@@ -4,7 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.*;
 import org.junit.Ignore;
 import org.junit.Test;
-import com.maeiei.Matrix;
+import com.maeiei.MatrixInteger;
 
 public class MatrixTest {
 
@@ -12,11 +12,11 @@ public class MatrixTest {
 	public void testMatrixInit() {
 		int row = 1;
 		int column = 2;
-		Matrix m = new Matrix(row, column);
+		MatrixInteger m = new MatrixInteger(row, column);
 		assertThat("矩阵的行数：", m.getRow(), is(row));
 		assertThat("矩阵的列数：", m.getColumn(), is(column));
 		int[][] expectedData = { { 1, 2 }, { 3, 4 } };
-		m = new Matrix(expectedData);
+		m = new MatrixInteger(expectedData);
 		int[][] actualData = m.getData();
 		assertThat("矩阵的行数：", m.getRow(), is(2));
 		assertThat("矩阵的列数：", m.getColumn(), is(2));
@@ -29,7 +29,7 @@ public class MatrixTest {
 	public void testInitRowData() {
 		int[] row1 = { 1, 2 };
 		int[] row2 = { 2, 1 };
-		Matrix m = new Matrix(2, 2);
+		MatrixInteger m = new MatrixInteger(2, 2);
 		int[][] expectedData = { { 1, 2 }, { 2, 1 } };
 		int[][] actualData = m.initRowData(0, row1);
 		assertThat("第1行，第1列：", actualData[0][0], is(expectedData[0][0]));
@@ -43,7 +43,7 @@ public class MatrixTest {
 	public void initColumnData() {
 		int[] column1 = { 1, 2 };
 		int[] column2 = { 2, 1 };
-		Matrix m = new Matrix(2, 2);
+		MatrixInteger m = new MatrixInteger(2, 2);
 		int[][] expectedData = { { 1, 2 }, { 2, 1 } };
 		int[][] actualData = m.initColumnData(0, column1);
 		assertThat("第1行，第1列：", actualData[0][0], is(expectedData[0][0]));
@@ -57,13 +57,13 @@ public class MatrixTest {
 	@Ignore
 	public void testToString() {
 		int[][] two = { { 1, 2 }, { 2, 1 } };
-		Matrix matrix = new Matrix(two);
+		MatrixInteger matrix = new MatrixInteger(two);
 		System.out.println(matrix);
 		int[][] oneRow = { { 1, 2 } };
-		matrix = new Matrix(oneRow);
+		matrix = new MatrixInteger(oneRow);
 		System.out.println(matrix);
 		int[][] oneColumn = { { 1 }, { 2 } };
-		matrix = new Matrix(oneColumn);
+		matrix = new MatrixInteger(oneColumn);
 		System.out.println(matrix);
 	}
 }

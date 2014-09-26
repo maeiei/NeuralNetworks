@@ -2,46 +2,46 @@ package com.maeiei;
 
 public class Level {
 
-	private Matrix input;
+	private MatrixInteger input;
 
-	private Matrix weight;
+	private MatrixInteger weight;
 
-	private Matrix bias;
+	private MatrixInteger bias;
 
 	private Function function;
 
-	public Level(Matrix input, Matrix weight, Matrix bias, Function function) {
+	public Level(MatrixInteger input, MatrixInteger weight, MatrixInteger bias, Function function) {
 		this.input = input;
 		this.weight = weight;
 		this.bias = bias;
 		this.function = function;
 	}
 
-	public Matrix output() {
+	public MatrixInteger output() {
 		return function.function(Operation.add(Operation.multiply(weight, input), bias));
 	}
 
-	public Matrix getInput() {
+	public MatrixInteger getInput() {
 		return input;
 	}
 
-	public void setInput(Matrix input) {
+	public void setInput(MatrixInteger input) {
 		this.input = input;
 	}
 
-	public Matrix getWeight() {
+	public MatrixInteger getWeight() {
 		return weight;
 	}
 
-	public void setWeight(Matrix weight) {
+	public void setWeight(MatrixInteger weight) {
 		this.weight = weight;
 	}
 
-	public Matrix getBias() {
+	public MatrixInteger getBias() {
 		return bias;
 	}
 
-	public void setBias(Matrix bias) {
+	public void setBias(MatrixInteger bias) {
 		this.bias = bias;
 	}
 

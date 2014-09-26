@@ -3,7 +3,7 @@ package com.maeiei.test;
 import org.junit.Ignore;
 import org.junit.Test;
 import com.maeiei.Level;
-import com.maeiei.Matrix;
+import com.maeiei.MatrixInteger;
 import com.maeiei.Purelin;
 
 public class LevelTest {
@@ -14,11 +14,11 @@ public class LevelTest {
 		int[][] inputData = { { -5 }, { 6 } };
 		int[][] weightData = { { 3, 2 } };
 		int[][] biasData = { { 1 } };
-		Matrix input = new Matrix(inputData);
-		Matrix weight = new Matrix(weightData);
-		Matrix bias = new Matrix(biasData);
+		MatrixInteger input = new MatrixInteger(inputData);
+		MatrixInteger weight = new MatrixInteger(weightData);
+		MatrixInteger bias = new MatrixInteger(biasData);
 		Level level = new Level(input, weight, bias, new Purelin());
-		Matrix result = level.output();
+		MatrixInteger result = level.output();
 		System.out.println(result);
 	}
 
@@ -27,11 +27,11 @@ public class LevelTest {
 		int[][] inputData = { { -1 }, { -1 }, { -1 } };
 		int[][] weightData = { { 1, -1, -1 }, { 1, 1, -1 } };
 		int[][] biasData = { { 3 }, { 3 } };
-		Matrix input = new Matrix(inputData);
-		Matrix weight = new Matrix(weightData);
-		Matrix bias = new Matrix(biasData);
+		MatrixInteger input = new MatrixInteger(inputData);
+		MatrixInteger weight = new MatrixInteger(weightData);
+		MatrixInteger bias = new MatrixInteger(biasData);
 		Level level = new Level(input, weight, bias, new Purelin());
-		Matrix result = level.output();
+		MatrixInteger result = level.output();
 		System.out.println(result);
 	}
 }
