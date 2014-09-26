@@ -3,7 +3,7 @@ package com.maeiei;
 public class Purelin implements Function {
 
 	@Override
-	public MatrixInteger function(MatrixInteger matrix) {
+	public Matrix function(Matrix matrix) {
 		return matrix;
 	}
 }
