@@ -6,7 +6,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import com.maeiei.MatrixInteger;
 
-public class MatrixTest {
+public class MatrixIntegerTest {
 
 	@Test
 	public void testMatrixInit() {
