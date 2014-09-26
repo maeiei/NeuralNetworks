@@ -52,7 +52,7 @@ public class Matrix {
 		return data[row][column];
 	}
 
-	public void set(int row, int column, int value) {
+	public void set(int row, int column, double value) {
 		data[row][column] = value;
 	}
 
