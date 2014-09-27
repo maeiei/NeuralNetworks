@@ -5,7 +5,6 @@ import org.junit.Test;
 import com.maeiei.Level;
 import com.maeiei.Logsig;
 import com.maeiei.Matrix;
-import com.maeiei.Operation;
 import com.maeiei.Purelin;
 import com.maeiei.Rule;
 

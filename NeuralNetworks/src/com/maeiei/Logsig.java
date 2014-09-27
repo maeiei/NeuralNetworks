@@ -23,7 +23,6 @@ public class Logsig implements Function {
 	@Override
 	public Matrix derivate(Matrix matrix) {
 		Matrix one = Matrix.allOne(matrix.getRow(), matrix.getColumn());
-		Matrix jacobianData = Matrix.unit(matrix.getColumn());
 		return Operation.multiply(Operation.subtract(one, function(matrix)),
 				function(matrix).transpose());
 	}
