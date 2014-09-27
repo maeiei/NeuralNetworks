@@ -4,11 +4,26 @@ public class Level {
 
 	private Matrix input;
 
+	private Matrix initResult;
+
 	private Matrix weight;
 
 	private Matrix bias;
 
+	private Matrix error;
+
+	private Matrix output;
+
 	private Function function;
+
+	public Level(Matrix input, Matrix initResult, Matrix weight, Matrix bias,
+			Function function) {
+		this.input = input;
+		this.initResult = initResult;
+		this.weight = weight;
+		this.bias = bias;
+		this.function = function;
+	}
 
 	public Level(Matrix input, Matrix weight, Matrix bias, Function function) {
 		this.input = input;
@@ -17,8 +32,10 @@ public class Level {
 		this.function = function;
 	}
 
-	public Matrix output() {
-		return function.function(Operation.add(Operation.multiply(weight, input), bias));
+	public Matrix backForward() {
+
+		return bias;
+
 	}
 
 	public Matrix getInput() {
@@ -52,4 +69,28 @@ public class Level {
 	public void setFunction(Function function) {
 		this.function = function;
 	}
+
+	public Matrix getInitResult() {
+		return initResult;
+	}
+
+	public void setInitResult(Matrix initResult) {
+		this.initResult = initResult;
+	}
+
+	public Matrix getError() {
+		error = Operation.subtract(initResult, output);
+		return error;
+	}
+
+	public Matrix getOutput() {
+		output = function.function(Operation.add(
+				Operation.multiply(weight, input), bias));
+		return output;
+	}
+
+	public void setOutput(Matrix output) {
+		this.output = output;
+	}
+
 }

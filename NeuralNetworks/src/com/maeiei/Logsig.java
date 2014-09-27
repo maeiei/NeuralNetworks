@@ -19,4 +19,11 @@ public class Logsig implements Function {
 
 		return 1 / (1 + Math.pow(Math.E, -n));
 	}
+
+	@Override
+	public Matrix derivate(Matrix matrix) {
+		Matrix one = new Matrix(matrix.getRow(), matrix.getColumn());
+		return Operation.multiply(Operation.subtract(one, function(matrix)),
+				function(matrix));
+	}
 }
