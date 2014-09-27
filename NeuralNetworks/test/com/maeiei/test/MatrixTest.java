@@ -7,7 +7,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.maeiei.Matrix;
-import com.maeiei.MatrixInteger;
 
 public class MatrixTest {
 
