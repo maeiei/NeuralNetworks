@@ -26,6 +26,7 @@ public class Operation {
 
 	/**
 	 * 乘法
+	 * 
 	 * @param multiplier
 	 * @param multiplicand
 	 * @return
@@ -42,6 +43,21 @@ public class Operation {
 		return product;
 	}
 
+	/**
+	 * 标量乘法
+	 * 
+	 * @param multiplier
+	 * @param multiplicand
+	 * @return
+	 */
+	public static Matrix multiply(Matrix multiplier, double multiplicand) {
+		Matrix result = new Matrix(multiplier.getRow(), multiplier.getColumn());
+		for (int i = 0; i < result.getRow(); i++)
+			for (int j = 0; j < result.getColumn(); j++)
+				result.set(i, j, multiplier.get(i, j) * multiplicand);
+		return result;
+	}
+
 	public static Matrix add(Matrix addend, double addenda) {
 		Matrix sum = new Matrix(addend.getRow(), addend.getColumn());
 		for (int i = 0; i < addend.getRow(); i++)
@@ -52,6 +68,7 @@ public class Operation {
 
 	/**
 	 * 除法
+	 * 
 	 * @param dividend
 	 * @param divisor
 	 * @return

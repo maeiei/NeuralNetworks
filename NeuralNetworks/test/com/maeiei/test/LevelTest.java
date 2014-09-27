@@ -8,6 +8,7 @@ import org.junit.Test;
 import com.maeiei.Level;
 import com.maeiei.Logsig;
 import com.maeiei.Matrix;
+import com.maeiei.Operation;
 import com.maeiei.Purelin;
 
 public class LevelTest {
@@ -21,7 +22,7 @@ public class LevelTest {
 		Matrix input = new Matrix(inputData);
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
-		Level level = new Level(input, weight, bias, new Purelin());
+		Level level = new Level(input, weight, bias, new Purelin(), false);
 		Matrix result = level.getOutput();
 		assertEquals("结果的行数：", result.getRow(), 1);
 		assertEquals("结果的列数：", result.getColumn(), 1);
@@ -37,7 +38,7 @@ public class LevelTest {
 		Matrix input = new Matrix(inputData);
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
-		Level level = new Level(input, weight, bias, new Purelin());
+		Level level = new Level(input, weight, bias, new Purelin(), false);
 		Matrix result = level.getOutput();
 		assertEquals("结果的行数：", result.getRow(), 2);
 		assertEquals("结果的列数：", result.getColumn(), 1);
@@ -58,9 +59,10 @@ public class LevelTest {
 		Matrix bias = new Matrix(biasData);
 		Logsig logsig = new Logsig();
 
-		Level level = new Level(input, initResult, weight, bias, logsig);
+		Level level = new Level(input, initResult, weight, bias, logsig, false);
 
 		Matrix firstOutput = level.getOutput();
+		System.out.println("第一层输出：" + firstOutput);
 
 		double[][] weightSecondData = { { 0.09, -0.17 } };
 		double[][] biasSecondData = { { 0.48 } };
@@ -69,13 +71,23 @@ public class LevelTest {
 		Matrix biasSecond = new Matrix(biasSecondData);
 		Purelin purelin = new Purelin();
 		Level secondLevel = new Level(firstOutput, initResult, weightSecond,
-				biasSecond, purelin);
-		System.out.println(secondLevel.getOutput());
+				biasSecond, purelin, true);
 		Matrix errorSecond = secondLevel.getError();
-		System.out.println(errorSecond);
-		
-		
-		
-		
+
+		double[][] constantData = { { -2 } };
+		Matrix constant = new Matrix(constantData);
+		Matrix sensibility2 = Operation.multiply(
+				Operation.multiply(constant, purelin.derivate(firstOutput)),
+				errorSecond);
+
+		Matrix jacobianData = level.getDerivateOutput().jacobian();
+
+		System.out.println("雅克比矩阵：" + jacobianData);
+
+		Matrix sensibility = Operation.multiply(
+				Operation.multiply(jacobianData, weightSecond.transpose()),
+				sensibility2);
+		System.out.println(sensibility);
+
 	}
 }

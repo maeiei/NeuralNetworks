@@ -22,6 +22,44 @@ public class Matrix {
 		data = new double[row][column];
 	}
 
+	public static Matrix unit(int width) {
+		Matrix result = new Matrix(width, width);
+
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < width; j++)
+				if (i == j)
+					result.set(i, j, 1);
+		return result;
+	}
+
+	public Matrix jacobian() {
+		if (row != column)
+			throw new IllegalArgumentException("矩阵的行列必须相等！");
+		for (int i = 0; i < row; i++)
+			for (int j = 0; j < column; j++)
+				if (i != j)
+					set(i, j, 0);
+		return this;
+	}
+
+	public static Matrix allOne(int row, int column) {
+		Matrix result = new Matrix(row, column);
+
+		for (int i = 0; i < row; i++)
+			for (int j = 0; j < column; j++)
+				result.set(i, j, 1);
+		return result;
+	}
+
+	public Matrix transpose() {
+		Matrix transposition = new Matrix(column, row);
+
+		for (int i = 0; i < row; i++)
+			for (int j = 0; j < column; j++)
+				transposition.set(j, i, this.get(i, j));
+		return transposition;
+	}
+
 	public Matrix(double[][] data) {
 		this.row = data.length;
 		this.column = data[0].length;
@@ -59,7 +97,8 @@ public class Matrix {
 	@Override
 	public String toString() {
 		StringBuilder dataBuilder = new StringBuilder(128);
-		dataBuilder.append("矩阵的维度为：" + this.getRow() + " * " + this.getColumn());
+		dataBuilder
+				.append("矩阵的维度为：" + this.getRow() + " * " + this.getColumn());
 		dataBuilder.append("\n");
 		for (double[] rowData : data) {
 			for (double columnData : rowData) {

@@ -11,6 +11,7 @@ import com.maeiei.Matrix;
 public class MatrixTest {
 
 	@Test
+	@Ignore
 	public void testMatrixInit() {
 		int row = 1;
 		int column = 2;
@@ -40,4 +41,12 @@ public class MatrixTest {
 		matrix = new Matrix(oneColumn);
 		System.out.println(matrix);
 	}
+
+	@Test
+	public void testTranspose() {
+		double[][] init = { { 0.321, 0.368 } };
+		Matrix matrix = new Matrix(init);
+		System.out.println(matrix.transpose());
+	}
+
 }

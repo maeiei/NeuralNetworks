@@ -2,6 +2,8 @@ package com.maeiei;
 
 public class Level {
 
+	private boolean lastLevel;
+
 	private Matrix input;
 
 	private Matrix initResult;
@@ -14,22 +16,43 @@ public class Level {
 
 	private Matrix output;
 
+	private Matrix derivateOutput;
+
+	private Matrix sensibility;
+
 	private Function function;
 
 	public Level(Matrix input, Matrix initResult, Matrix weight, Matrix bias,
-			Function function) {
+			Function function, boolean lastLevel) {
 		this.input = input;
 		this.initResult = initResult;
 		this.weight = weight;
 		this.bias = bias;
 		this.function = function;
+		this.lastLevel = lastLevel;
+		calculateDerivate(input, weight, bias, function);
+		if(isLastLevel())
+			error = Operation.subtract(initResult, output);
 	}
 
-	public Level(Matrix input, Matrix weight, Matrix bias, Function function) {
+	public Level(Matrix input, Matrix weight, Matrix bias, Function function,
+			boolean lastLevel) {
 		this.input = input;
 		this.weight = weight;
 		this.bias = bias;
 		this.function = function;
+		this.lastLevel = lastLevel;
+		calculateDerivate(input, weight, bias, function);
+		if(isLastLevel())
+			error = Operation.subtract(initResult, output);
+	}
+
+	private void calculateDerivate(Matrix input, Matrix weight, Matrix bias,
+			Function function) {
+		output = function.function(Operation.add(
+				Operation.multiply(weight, input), bias));
+		derivateOutput = function.derivate(Operation.add(
+				Operation.multiply(weight, input), bias));
 	}
 
 	public Matrix backForward() {
@@ -79,13 +102,10 @@ public class Level {
 	}
 
 	public Matrix getError() {
-		error = Operation.subtract(initResult, output);
 		return error;
 	}
 
 	public Matrix getOutput() {
-		output = function.function(Operation.add(
-				Operation.multiply(weight, input), bias));
 		return output;
 	}
 
@@ -93,4 +113,23 @@ public class Level {
 		this.output = output;
 	}
 
+	public void setSensibility(Matrix sensibility) {
+		this.sensibility = sensibility;
+	}
+
+	public Matrix getDerivateOutput() {
+		return derivateOutput;
+	}
+
+	public boolean isLastLevel() {
+		return lastLevel;
+	}
+
+	public void setLastLevel(boolean lastLevel) {
+		this.lastLevel = lastLevel;
+	}
+
+	public Matrix getSensibility() {
+		return sensibility;
+	}
 }
