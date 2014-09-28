@@ -12,8 +12,7 @@ public class Rule {
 
 	private double alpha;
 
-	public Rule(Level currentLevel, Level nextLevel, Matrix constant,
-			double alpha) {
+	public Rule(Level currentLevel, Level nextLevel, Matrix constant, double alpha) {
 		this.currentLevel = currentLevel;
 		this.previousLevel = nextLevel;
 		this.constant = constant;
@@ -21,47 +20,39 @@ public class Rule {
 	}
 
 	public Rule(Level currentLevel, Matrix constant, double alpha) {
-		this.currentLevel = currentLevel;
-		this.constant = constant;
-		this.alpha = alpha;
+		this(currentLevel, null, constant, alpha);
 	}
 
 	public void amendSensibility() {
 		if (currentLevel.isLastLevel()) {
-			sensibility = Operation.multiply(Operation.multiply(constant,
-					currentLevel.getFunction()
-							.derivate(currentLevel.getInput())), currentLevel
-					.getError());
+			sensibility = Operation.multiply(
+					Operation.multiply(constant, currentLevel.getFunction().derivate(currentLevel.getInput())),
+					currentLevel.getError());
 			currentLevel.setSensibility(sensibility);
 		} else {
 			Matrix jacobianData = currentLevel.getDerivateOutput().jacobian();
-			sensibility = Operation.multiply(Operation.multiply(jacobianData,
-					previousLevel.getWeight().transpose()), previousLevel
-					.getSensibility());
+			sensibility = Operation.multiply(
+					Operation.multiply(jacobianData, previousLevel.getWeight().transpose()),
+					previousLevel.getSensibility());
 			currentLevel.setSensibility(sensibility);
 		}
 	}
 
 	public Matrix amendWeight() {
 		if (currentLevel.isLastLevel()) {
-			return Operation.subtract(currentLevel.getWeight(), Operation
-					.multiply(Operation.multiply(sensibility, alpha),
-							currentLevel.getInput().transpose()));
-
+			return Operation.subtract(currentLevel.getWeight(), Operation.multiply(
+					Operation.multiply(sensibility, alpha), currentLevel.getInput().transpose()));
 		} else {
-			return Operation.subtract(currentLevel.getWeight(), Operation
-					.multiply(Operation.multiply(sensibility, alpha),
-							currentLevel.getInput().transpose()));
+			return Operation.subtract(currentLevel.getWeight(), Operation.multiply(
+					Operation.multiply(sensibility, alpha), currentLevel.getInput().transpose()));
 		}
 	}
 
 	public Matrix amendBias() {
 		if (currentLevel.isLastLevel()) {
-			return Operation.subtract(currentLevel.getBias(),
-					Operation.multiply(sensibility, alpha));
+			return Operation.subtract(currentLevel.getBias(), Operation.multiply(sensibility, alpha));
 		} else {
-			return Operation.subtract(currentLevel.getBias(),
-					Operation.multiply(sensibility, alpha));
+			return Operation.subtract(currentLevel.getBias(), Operation.multiply(sensibility, alpha));
 		}
 	}
 

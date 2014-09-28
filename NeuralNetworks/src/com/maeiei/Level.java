@@ -106,6 +106,9 @@ public class Level {
 	}
 
 	public Matrix getOutput() {
+		calculateDerivate(input, weight, bias, function);
+		if(isLastLevel())
+			error = Operation.subtract(initResult, output);
 		return output;
 	}
 
@@ -118,6 +121,9 @@ public class Level {
 	}
 
 	public Matrix getDerivateOutput() {
+		calculateDerivate(input, weight, bias, function);
+		if(isLastLevel())
+			error = Operation.subtract(initResult, output);
 		return derivateOutput;
 	}
 
