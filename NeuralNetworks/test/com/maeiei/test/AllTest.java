@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(value = Suite.class)
-@SuiteClasses({ RuleTest.class, FunctionTest.class, LevelTest.class, LogsigTest.class, MatrixTest.class,
+@SuiteClasses({ BackPropagationRuleTest.class, FunctionTest.class, LevelTest.class, LogsigTest.class, MatrixTest.class,
 		OperationTest.class })
 public class AllTest {
 }

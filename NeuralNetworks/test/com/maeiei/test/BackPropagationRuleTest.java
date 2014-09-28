@@ -5,18 +5,20 @@ import com.maeiei.Level;
 import com.maeiei.Logsig;
 import com.maeiei.Matrix;
 import com.maeiei.Purelin;
-import com.maeiei.Rule;
+import com.maeiei.BackPropagationRule;
 
-public class RuleTest {
+public class BackPropagationRuleTest {
 
 	@Test
 	public void testRule() {
 		Level level = initFirstLevel();
 		Level secondLevel = initSecondLevel(level.getOutput());
-		Rule secondRule = new Rule(secondLevel);
-		Rule firstRule = new Rule(level, secondLevel);
+		BackPropagationRule secondRule = new BackPropagationRule(secondLevel);
+		BackPropagationRule firstRule = new BackPropagationRule(level, secondLevel);
 		secondRule.amend();
 		firstRule.amend();
+		System.out.println(level.getWeight());
+		System.out.println(level.getBias());
 	}
 
 	private Level initFirstLevel() {

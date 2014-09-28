@@ -1,6 +1,6 @@
 package com.maeiei;
 
-public class Rule {
+public class BackPropagationRule {
 	
 	private static final double[][] constantData = { { -2 } };
 
@@ -18,19 +18,19 @@ public class Rule {
 
 	private double alpha;
 
-	public Rule(Level currentLevel) {
+	public BackPropagationRule(Level currentLevel) {
 		this(currentLevel, null, CONSTANT, ALPHA);
 	}
 
-	public Rule(Level currentLevel, Level nextLevel) {
+	public BackPropagationRule(Level currentLevel, Level nextLevel) {
 		this(currentLevel, nextLevel, CONSTANT, ALPHA);
 	}
 
-	public Rule(Level currentLevel, Matrix constant, double alpha) {
+	public BackPropagationRule(Level currentLevel, Matrix constant, double alpha) {
 		this(currentLevel, null, constant, alpha);
 	}
 
-	public Rule(Level currentLevel, Level nextLevel, Matrix constant, double alpha) {
+	public BackPropagationRule(Level currentLevel, Level nextLevel, Matrix constant, double alpha) {
 		this.currentLevel = currentLevel;
 		this.previousLevel = nextLevel;
 		this.constant = constant;
