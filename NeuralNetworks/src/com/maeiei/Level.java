@@ -30,9 +30,6 @@ public class Level {
 		this.bias = bias;
 		this.function = function;
 		this.lastLevel = lastLevel;
-		calculateDerivate(input, weight, bias, function);
-		if(isLastLevel())
-			error = Operation.subtract(initResult, output);
 	}
 
 	public Level(Matrix input, Matrix weight, Matrix bias, Function function,
@@ -42,9 +39,6 @@ public class Level {
 		this.bias = bias;
 		this.function = function;
 		this.lastLevel = lastLevel;
-		calculateDerivate(input, weight, bias, function);
-		if(isLastLevel())
-			error = Operation.subtract(initResult, output);
 	}
 
 	private void calculateDerivate(Matrix input, Matrix weight, Matrix bias,
@@ -102,13 +96,13 @@ public class Level {
 	}
 
 	public Matrix getError() {
+		if(isLastLevel())
+			error = Operation.subtract(initResult, output);
 		return error;
 	}
 
 	public Matrix getOutput() {
 		calculateDerivate(input, weight, bias, function);
-		if(isLastLevel())
-			error = Operation.subtract(initResult, output);
 		return output;
 	}
 

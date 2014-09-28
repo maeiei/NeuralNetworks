@@ -61,6 +61,8 @@ public class LevelTest {
 		Matrix biasSecond = new Matrix(biasSecondData);
 		Purelin purelin = new Purelin();
 		Level secondLevel = new Level(firstOutput, initResult, weightSecond, biasSecond, purelin, true);
+		Matrix secondOutput = secondLevel.getOutput();
+		System.out.println("µÚ¶þ²ãÊä³ö£º" + secondOutput);
 		Matrix errorSecond = secondLevel.getError();
 		double[][] constantData = { { -2 } };
 		Matrix constant = new Matrix(constantData);

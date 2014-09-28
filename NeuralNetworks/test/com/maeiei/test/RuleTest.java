@@ -20,8 +20,11 @@ public class RuleTest {
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
 		Logsig logsig = new Logsig();
+		
 		Level level = new Level(input, initResult, weight, bias, logsig, false);
+		
 		Matrix firstOutput = level.getOutput();
+		
 		System.out.println("第一层输出：" + firstOutput);
 		double[][] weightSecondData = { { 0.09, -0.17 } };
 		double[][] biasSecondData = { { 0.48 } };
@@ -29,6 +32,7 @@ public class RuleTest {
 		Matrix biasSecond = new Matrix(biasSecondData);
 		Purelin purelin = new Purelin();
 		Level secondLevel = new Level(firstOutput, initResult, weightSecond, biasSecond, purelin, true);
+		System.out.println("第二层输出：" + secondLevel.getOutput());
 		System.out.println("第一次误差为：" + secondLevel.getError());
 		double[][] constantData = { { -2 } };
 		Matrix constant = new Matrix(constantData);
