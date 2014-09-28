@@ -6,7 +6,6 @@ import static org.hamcrest.core.Is.*;
 import org.junit.Test;
 
 import com.maeiei.Matrix;
-import com.maeiei.MatrixInteger;
 import com.maeiei.Operation;
 
 public class OperationTest {

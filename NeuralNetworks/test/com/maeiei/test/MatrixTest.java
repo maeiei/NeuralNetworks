@@ -3,7 +3,6 @@ package com.maeiei.test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.maeiei.Matrix;
@@ -11,7 +10,6 @@ import com.maeiei.Matrix;
 public class MatrixTest {
 
 	@Test
-	@Ignore
 	public void testMatrixInit() {
 		int row = 1;
 		int column = 2;
@@ -29,7 +27,6 @@ public class MatrixTest {
 	}
 
 	@Test
-	@Ignore
 	public void testToString() {
 		double[][] two = { { 1, 2 }, { 2, 1 } };
 		Matrix matrix = new Matrix(two);
