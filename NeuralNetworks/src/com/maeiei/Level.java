@@ -28,6 +28,10 @@ public class Level {
 
 	private Function function;
 
+	public Level(Matrix weight, Matrix bias, Function function) {
+		this(weight, bias, function, true, true);
+	}
+
 	public Level(Matrix weight, Matrix bias, Function function, boolean firstHead, boolean lastLevel) {
 		this.weight = weight;
 		this.bias = bias;
@@ -137,5 +141,9 @@ public class Level {
 
 	public boolean isFirstHead() {
 		return firstHead;
+	}
+
+	public void setFirstHead(boolean firstHead) {
+		this.firstHead = firstHead;
 	}
 }

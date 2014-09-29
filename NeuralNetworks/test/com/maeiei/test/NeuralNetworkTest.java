@@ -22,7 +22,8 @@ public class NeuralNetworkTest {
 	@Test
 	public void testBackPropagationRuleCirculation() {
 		NeuralNetwork neuralNetwork = initNeuralNetwork();
-		for (int i = 0; i < 20; i++) {
+		
+		for (int i = 0; i < 100; i++) {
 			neuralNetwork.run();
 		}
 		System.out.println(neuralNetwork.getOutput());

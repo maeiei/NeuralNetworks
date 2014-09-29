@@ -55,15 +55,73 @@ public class NeuralNetwork {
 		return copiedLevels;
 	}
 
+	public void add(Level level) {
+		levels.add(level);
+		traverse();
+	}
+
 	public void addFirst(Level inputLevel) {
-		inputLevel.setInput(this.input);
 		levels.addFirst(inputLevel);
+		traverse();
 	}
 
 	public void addLast(Level outputLevel) {
-		outputLevel.setInput(getFirst().getOutput());
-		outputLevel.setInitResult(initResult);
 		levels.addLast(outputLevel);
+		traverse();
+	}
+
+	private void traverse() {
+		if (isSingelElement()) {
+			singelElement();
+		} else {
+			multiElements();
+		}
+	}
+
+	private void multiElements() {
+		for (int i = 0, size = levels.size(); i < size; i++) {
+			Level level = levels.get(i);
+			if (i == 0) {
+				changeFirstElement(i, level);
+			} else if (i == size - 1) {
+				changeLastElement(i, level);
+			} else {
+				changeDormalElement(i, level);
+			}
+		}
+	}
+
+	private void changeDormalElement(int i, Level level) {
+		level.setInput(levels.get(i - 1).getOutput());
+		levels.get(i + 1).setInput(level.getOutput());
+		level.setFirstHead(false);
+		level.setLastLevel(false);
+	}
+
+	private void changeLastElement(int i, Level level) {
+		level.setInput(levels.get(i - 1).getOutput());
+		level.setInitResult(initResult);
+		level.setFirstHead(false);
+		level.setLastLevel(true);
+	}
+
+	private void changeFirstElement(int i, Level level) {
+		level.setInput(this.input);
+		levels.get(i + 1).setInput(level.getOutput());
+		level.setFirstHead(true);
+		level.setLastLevel(false);
+	}
+
+	private boolean isSingelElement() {
+		return levels.size() == 1;
+	}
+
+	private void singelElement() {
+		Level level = levels.get(0);
+		level.setInput(this.input);
+		level.setInitResult(initResult);
+		level.setFirstHead(true);
+		level.setLastLevel(true);
 	}
 
 	public Level getFirst() {
@@ -76,5 +134,21 @@ public class NeuralNetwork {
 
 	public Matrix getOutput() {
 		return output;
+	}
+
+	public Matrix getInput() {
+		return input;
+	}
+
+	public void setInput(Matrix input) {
+		this.input = input;
+	}
+
+	public Matrix getInitResult() {
+		return initResult;
+	}
+
+	public void setInitResult(Matrix initResult) {
+		this.initResult = initResult;
 	}
 }
