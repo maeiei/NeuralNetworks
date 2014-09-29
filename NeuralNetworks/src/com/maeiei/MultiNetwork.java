@@ -11,6 +11,7 @@ public class MultiNetwork implements Network {
 	private Matrix initResult;
 
 	public MultiNetwork(Matrix input, Matrix initResult) {
+		levels = new LinkedList<>();
 		this.input = input;
 		this.initResult = initResult;
 	}
@@ -18,20 +19,40 @@ public class MultiNetwork implements Network {
 	@Override
 	public void add(Level level) {
 		levels.add(level);
-		multiElements();
 	}
 
 	@Override
 	public void addFirst(Level inputLevel) {
 		levels.addFirst(inputLevel);
-		multiElements();
 	}
 
 	@Override
 	public void addLast(Level outputLevel) {
-		levels.add(outputLevel);
-		multiElements();
+		add(outputLevel);
 	}
+
+	@Override
+	public Matrix getOutput() {
+		calculateOutput();
+		return getLast().getOutput();
+	}
+
+	private void calculateOutput() {
+		if (isSingelElement()) {
+			singelElement();
+		} else {
+			multiElements();
+		}
+	}
+
+	private void singelElement() {
+		Level level = levels.get(0);
+		level.setInput(input);
+		level.setInitResult(initResult);
+		level.setFirstHead(true);
+		level.setLastLevel(true);
+	}
+
 	private void multiElements() {
 		for (int i = 0, size = levels.size(); i < size; i++) {
 			Level level = levels.get(i);
@@ -40,12 +61,12 @@ public class MultiNetwork implements Network {
 			} else if (i == size - 1) {
 				changeLastElement(i, level);
 			} else {
-				changeDormalElement(i, level);
+				changeNormalElement(i, level);
 			}
 		}
 	}
 
-	private void changeDormalElement(int i, Level level) {
+	private void changeNormalElement(int i, Level level) {
 		level.setInput(levels.get(i - 1).getOutput());
 		levels.get(i + 1).setInput(level.getOutput());
 		level.setFirstHead(false);
@@ -66,9 +87,8 @@ public class MultiNetwork implements Network {
 		level.setLastLevel(false);
 	}
 
-	@Override
 	public boolean isSingelElement() {
-		return false;
+		return levels.size() == 1;
 	}
 
 	@Override
@@ -86,8 +106,19 @@ public class MultiNetwork implements Network {
 		return levels.getLast();
 	}
 
-	@Override
-	public Matrix getOutput() {
-		return getLast().getOutput();
+	public Matrix getInput() {
+		return input;
+	}
+
+	public Matrix getInitResult() {
+		return initResult;
+	}
+
+	public void setInput(Matrix input) {
+		this.input = input;
+	}
+
+	public void setInitResult(Matrix initResult) {
+		this.initResult = initResult;
 	}
 }

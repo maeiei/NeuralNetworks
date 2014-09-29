@@ -17,6 +17,10 @@ public class BackPropagationRule implements Rule{
 	private Matrix sensibility;
 
 	private double alpha;
+	
+	public BackPropagationRule() {
+		this(null, null, CONSTANT, ALPHA);
+	}
 
 	public BackPropagationRule(Level currentLevel) {
 		this(currentLevel, null, CONSTANT, ALPHA);

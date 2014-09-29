@@ -10,13 +10,19 @@ public interface Network {
 
 	public abstract void addLast(Level outputLevel);
 
-	public abstract boolean isSingelElement();
-
-	public abstract Matrix getOutput();
-
 	public abstract LinkedList<Level> getLevels();
 
 	public abstract Level getFirst();
 
 	public abstract Level getLast();
+
+	public abstract Matrix getInput();
+
+	public abstract Matrix getInitResult();
+
+	public abstract Matrix getOutput();
+
+	public abstract void setInput(Matrix input);
+
+	public abstract void setInitResult(Matrix initResult);
 }

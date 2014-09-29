@@ -34,7 +34,6 @@ public class SingelNetwork implements Network {
 		add(outputLevel);
 	}
 
-	@Override
 	public boolean isSingelElement() {
 		return true;
 	}
@@ -63,11 +62,6 @@ public class SingelNetwork implements Network {
 	}
 
 	@Override
-	public Matrix getOutput() {
-		return getLast().getOutput();
-	}
-
-	@Override
 	public Level getFirst() {
 		return level;
 	}
@@ -75,5 +69,10 @@ public class SingelNetwork implements Network {
 	@Override
 	public Level getLast() {
 		return level;
+	}
+
+	@Override
+	public Matrix getOutput() {
+		return null;
 	}
 }
