@@ -10,13 +10,13 @@ import com.maeiei.BackPropagationRule;
 public class BackPropagationRuleTest {
 
 	@Test
-	public void testRule() {
+	public void testBackPropagationRule() {
 		Level level = initFirstLevel();
 		Level secondLevel = initSecondLevel(level.getOutput());
-		BackPropagationRule secondRule = new BackPropagationRule(secondLevel);
-		BackPropagationRule firstRule = new BackPropagationRule(level, secondLevel);
-		secondRule.amend();
-		firstRule.amend();
+		BackPropagationRule rule = new BackPropagationRule(secondLevel);
+		rule.amend();
+		rule = new BackPropagationRule(level, secondLevel);
+		rule.amend();
 		System.out.println(level.getWeight());
 		System.out.println(level.getBias());
 	}
@@ -31,7 +31,9 @@ public class BackPropagationRuleTest {
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
 		Logsig logsig = new Logsig();
-		Level level = new Level(input, initResult, weight, bias, logsig, true, false);
+		Level level = new Level(weight, bias, logsig, true, false);
+		level.setInput(input);
+		level.setInitResult(initResult);
 		return level;
 	}
 
@@ -42,8 +44,9 @@ public class BackPropagationRuleTest {
 		double[][] biasSecondData = { { 0.48 } };
 		Matrix weightSecond = new Matrix(weightSecondData);
 		Matrix biasSecond = new Matrix(biasSecondData);
-		Level secondLevel = new Level(firstOutput, initResult, weightSecond, biasSecond, new Purelin(), false,
-				true);
+		Level secondLevel = new Level(weightSecond, biasSecond, new Purelin(), false, true);
+		secondLevel.setInput(firstOutput);
+		secondLevel.setInitResult(initResult);
 		return secondLevel;
 	}
 }

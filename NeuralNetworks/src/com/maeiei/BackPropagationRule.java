@@ -1,6 +1,6 @@
 package com.maeiei;
 
-public class BackPropagationRule {
+public class BackPropagationRule implements Rule{
 	
 	private static final double[][] constantData = { { -2 } };
 
