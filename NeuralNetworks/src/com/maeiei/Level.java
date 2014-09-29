@@ -28,26 +28,6 @@ public class Level {
 
 	private Function function;
 
-//	public Level(Matrix input, Matrix initResult, Matrix weight, Matrix bias, Function function,
-//			boolean firstHead, boolean lastLevel) {
-//		this.input = input;
-//		this.initResult = initResult;
-//		this.weight = weight;
-//		this.bias = bias;
-//		this.function = function;
-//		this.firstHead = firstHead;
-//		this.lastLevel = lastLevel;
-//	}
-
-//	public Level(Matrix input, Matrix weight, Matrix bias, Function function, boolean firstHead, boolean lastLevel) {
-//		this.input = input;
-//		this.weight = weight;
-//		this.bias = bias;
-//		this.function = function;
-//		this.firstHead = firstHead;
-//		this.lastLevel = lastLevel;
-//	}
-
 	public Level(Matrix weight, Matrix bias, Function function, boolean firstHead, boolean lastLevel) {
 		this.weight = weight;
 		this.bias = bias;
@@ -59,10 +39,6 @@ public class Level {
 	private void calculateDerivate(Matrix input, Matrix weight, Matrix bias, Function function) {
 		output = function.function(Operation.add(Operation.multiply(weight, input), bias));
 		derivateOutput = function.derivate(Operation.add(Operation.multiply(weight, input), bias));
-	}
-
-	public Matrix backForward() {
-		return bias;
 	}
 
 	public Matrix getInput() {

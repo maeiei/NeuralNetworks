@@ -22,15 +22,15 @@ public class Matrix {
 		data = new double[row][column];
 	}
 
-	public static Matrix unit(int width) {
-		Matrix result = new Matrix(width, width);
-
-		for (int i = 0; i < width; i++)
-			for (int j = 0; j < width; j++)
-				if (i == j)
-					result.set(i, j, 1);
-		return result;
-	}
+//	public static Matrix unit(int width) {
+//		Matrix result = new Matrix(width, width);
+//
+//		for (int i = 0; i < width; i++)
+//			for (int j = 0; j < width; j++)
+//				if (i == j)
+//					result.set(i, j, 1);
+//		return result;
+//	}
 
 	public Matrix jacobian() {
 		if (row != column)

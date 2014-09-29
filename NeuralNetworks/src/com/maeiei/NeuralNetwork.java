@@ -55,10 +55,6 @@ public class NeuralNetwork {
 		return copiedLevels;
 	}
 
-	public void addInput(Level inputLevel) {
-		levels.addFirst(inputLevel);
-	}
-
 	public void addFirst(Level inputLevel) {
 		inputLevel.setInput(this.input);
 		levels.addFirst(inputLevel);

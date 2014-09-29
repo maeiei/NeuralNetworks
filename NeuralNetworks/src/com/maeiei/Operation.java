@@ -73,16 +73,16 @@ public class Operation {
 	 * @param divisor
 	 * @return
 	 */
-	public static Matrix divide(Matrix dividend, Matrix divisor) {
-		if (dividend.getRow() != divisor.getRow()
-				|| dividend.getColumn() != divisor.getColumn())
-			throw new IllegalArgumentException("两个矩阵的维度必须相等！");
-		Matrix sum = new Matrix(dividend.getRow(), dividend.getColumn());
-		for (int i = 0; i < dividend.getRow(); i++)
-			for (int j = 0; j < dividend.getColumn(); j++)
-				sum.set(i, j, dividend.get(i, j) / divisor.get(i, j));
-		return sum;
-	}
+//	public static Matrix divide(Matrix dividend, Matrix divisor) {
+//		if (dividend.getRow() != divisor.getRow()
+//				|| dividend.getColumn() != divisor.getColumn())
+//			throw new IllegalArgumentException("两个矩阵的维度必须相等！");
+//		Matrix sum = new Matrix(dividend.getRow(), dividend.getColumn());
+//		for (int i = 0; i < dividend.getRow(); i++)
+//			for (int j = 0; j < dividend.getColumn(); j++)
+//				sum.set(i, j, dividend.get(i, j) / divisor.get(i, j));
+//		return sum;
+//	}
 
 	private static double calculateSingleResult(Matrix multiplier,
 			Matrix multiplicand, int row, int column) {
