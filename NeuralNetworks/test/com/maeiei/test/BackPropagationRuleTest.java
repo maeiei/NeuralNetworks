@@ -13,12 +13,13 @@ public class BackPropagationRuleTest {
 	public void testBackPropagationRule() {
 		Level level = initFirstLevel();
 		Level secondLevel = initSecondLevel(level.getOutput());
+		System.out.println(secondLevel.getOutput());
 		BackPropagationRule rule = new BackPropagationRule(secondLevel);
 		rule.amend();
 		rule = new BackPropagationRule(level, secondLevel);
 		rule.amend();
-		System.out.println(level.getWeight());
-		System.out.println(level.getBias());
+		secondLevel.setInput(level.getOutput());
+		System.out.println(secondLevel.getOutput());
 	}
 
 	private Level initFirstLevel() {

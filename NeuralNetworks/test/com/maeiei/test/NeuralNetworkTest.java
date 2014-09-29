@@ -1,5 +1,6 @@
 package com.maeiei.test;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import com.maeiei.BackPropagationRule;
 import com.maeiei.Level;
@@ -11,17 +12,19 @@ import com.maeiei.Purelin;
 public class NeuralNetworkTest {
 
 	@Test
+	@Ignore
 	public void testBackPropagationRule() {
-		Level first = initFirstLevel();
-		Level last = initSecondLevel();
-		double[][] inputData = { { 1 } };
-		double[][] initResultData = { { 1.707 } };
-		Matrix input = new Matrix(inputData);
-		Matrix initResult = new Matrix(initResultData);
-		NeuralNetwork neuralNetwork = new NeuralNetwork(new BackPropagationRule(last), input, initResult);
-		neuralNetwork.addFirst(first);
-		neuralNetwork.addLast(last);
+		NeuralNetwork neuralNetwork = initNeuralNetwork();
 		neuralNetwork.run();
+		System.out.println(neuralNetwork.getOutput());
+	}
+
+	@Test
+	public void testBackPropagationRuleCirculation() {
+		NeuralNetwork neuralNetwork = initNeuralNetwork();
+		for (int i = 0; i < 20; i++) {
+			neuralNetwork.run();
+		}
 		System.out.println(neuralNetwork.getOutput());
 	}
 
@@ -40,8 +43,20 @@ public class NeuralNetworkTest {
 		double[][] biasSecondData = { { 0.48 } };
 		Matrix weightSecond = new Matrix(weightSecondData);
 		Matrix biasSecond = new Matrix(biasSecondData);
-		Level secondLevel = new Level(weightSecond, biasSecond, new Purelin(), false,
-				true);
+		Level secondLevel = new Level(weightSecond, biasSecond, new Purelin(), false, true);
 		return secondLevel;
+	}
+
+	private NeuralNetwork initNeuralNetwork() {
+		Level first = initFirstLevel();
+		Level last = initSecondLevel();
+		double[][] inputData = { { 1 } };
+		double[][] initResultData = { { 1.707 } };
+		Matrix input = new Matrix(inputData);
+		Matrix initResult = new Matrix(initResultData);
+		NeuralNetwork neuralNetwork = new NeuralNetwork(new BackPropagationRule(last), input, initResult);
+		neuralNetwork.addFirst(first);
+		neuralNetwork.addLast(last);
+		return neuralNetwork;
 	}
 }
