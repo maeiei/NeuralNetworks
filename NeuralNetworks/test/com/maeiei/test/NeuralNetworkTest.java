@@ -89,7 +89,7 @@ public class NeuralNetworkTest {
 		Network network = new MultiNetwork(input, initResult);
 		network.add(first);
 		network.add(last);
-		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(first));
+		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(last));
 		return neuralNetwork;
 	}
 }

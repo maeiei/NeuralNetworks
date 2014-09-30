@@ -11,4 +11,6 @@ public interface Network {
 	public void add(Level level);
 
 	public Level getHead();
+
+	public Level getLast();
 }

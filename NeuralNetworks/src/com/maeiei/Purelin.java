@@ -9,7 +9,6 @@ public class Purelin implements Function {
 
 	@Override
 	public Matrix derivate(Matrix matrix) {
-		double[][] result = { { 1 } };
-		return new Matrix(result);
+		return Matrix.unit(1, 1.0d);
 	}
 }

@@ -9,8 +9,7 @@ public class MultiNetwork implements Network {
 	private Matrix initResult;
 
 	public MultiNetwork(Matrix input, Matrix initResult) {
-		this.input = input;
-		this.initResult = initResult;
+		this(NullLevel.getNull(), input, initResult);
 	}
 
 	public MultiNetwork(Level head, Matrix input, Matrix initResult) {
@@ -20,10 +19,20 @@ public class MultiNetwork implements Network {
 	}
 
 	public void add(Level level) {
-		if (head == null)
+		if (head.isNull()) {
 			head = level;
-		else
-			head.setNextLevel(level);
+			head.setInput(input);
+			head.setInitResult(initResult);
+		} else {
+			Level node = head;
+			while (node.hasNext()) {
+				node = node.getNextLevel();
+			}
+			node.setNextLevel(level);
+			level.setPreviousLevel(node);
+			level.setInput(node.getOutput());
+			level.setInitResult(initResult);
+		}
 	}
 
 	public Matrix getOutput() {
@@ -53,5 +62,13 @@ public class MultiNetwork implements Network {
 
 	public Level getHead() {
 		return head;
+	}
+
+	public Level getLast() {
+		Level next = head;
+		while (next.hasNext()) {
+			next = next.getNextLevel();
+		}
+		return next;
 	}
 }

@@ -1,6 +1,6 @@
 package com.maeiei;
 
-public class Level implements Nullable{
+public class Level implements Nullable {
 
 	private Level previousLevel;
 
@@ -27,13 +27,16 @@ public class Level implements Nullable{
 	private Matrix amendBias;
 
 	private Function function;
-	
+
 	protected Level() {
-		this(null, null, null, null, null);
 	}
 
 	public Level(Matrix weight, Matrix bias, Function function) {
 		this(weight, bias, function, NullLevel.getNull(), NullLevel.getNull());
+	}
+
+	public Level(Matrix weight, Matrix bias, Function function, Level previousLevel) {
+		this(weight, bias, function, previousLevel, NullLevel.getNull());
 	}
 
 	public Level(Matrix weight, Matrix bias, Function function, Level previousLevel, Level nextLevel) {
@@ -42,6 +45,7 @@ public class Level implements Nullable{
 		this.function = function;
 		this.previousLevel = previousLevel;
 		this.nextLevel = nextLevel;
+		setInput(previousLevel.getOutput());
 	}
 
 	public Matrix getInput() {
@@ -92,8 +96,6 @@ public class Level implements Nullable{
 
 	public Matrix getOutput() {
 		output = function.function(Operation.add(Operation.multiply(weight, input), bias));
-		if (!hasNext())
-			error = Operation.subtract(initResult, output);
 		return output;
 	}
 
@@ -111,11 +113,11 @@ public class Level implements Nullable{
 	}
 
 	public boolean hasPrevious() {
-		return previousLevel != null ? true : false;
+		return previousLevel.isNotNull();
 	}
 
 	public boolean hasNext() {
-		return nextLevel != null ? true : false;
+		return nextLevel.isNotNull();
 	}
 
 	public Matrix getSensibility() {
@@ -143,6 +145,7 @@ public class Level implements Nullable{
 	}
 
 	public void setPreviousLevel(Level previousLevel) {
+		setInput(previousLevel.getOutput());
 		this.previousLevel = previousLevel;
 	}
 
@@ -151,11 +154,17 @@ public class Level implements Nullable{
 	}
 
 	public void setNextLevel(Level nextLevel) {
+		nextLevel.setInput(getOutput());
 		this.nextLevel = nextLevel;
 	}
 
 	@Override
 	public boolean isNull() {
 		return false;
+	}
+
+	@Override
+	public boolean isNotNull() {
+		return true;
 	}
 }

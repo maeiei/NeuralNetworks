@@ -8,7 +8,7 @@ public class BackPropagationRule implements Rule {
 
 	public static final double ALPHA = 0.1d;
 
-	private Level head;
+	private Level last;
 
 	private Matrix constant;
 
@@ -25,24 +25,24 @@ public class BackPropagationRule implements Rule {
 	}
 
 	public BackPropagationRule(Level level, Matrix constant, double alpha) {
-		this.head = level;
+		this.last = level;
 		this.constant = constant;
 		this.alpha = alpha;
 	}
 
 	public BackPropagationRule(Network network, Matrix constant, double alpha) {
-		this.head = network.getHead();
+		this.last = network.getLast();
 		this.constant = constant;
 		this.alpha = alpha;
 	}
 
 	public void amend() {
-		Level next = head;
+		Level next = last;
 		do {
 			amendSensibility(next);
 			amendWeightAndBias(next);
-			next = next.getNextLevel();
-		} while (next.hasNext());
+			next = next.getPreviousLevel();
+		} while (next.hasPrevious());
 	}
 
 	private void amendSensibility(Level level) {
@@ -52,8 +52,8 @@ public class BackPropagationRule implements Rule {
 			level.setSensibility(sensibility);
 		} else {
 			Matrix jacobianData = level.getDerivateOutput().jacobian();
-			sensibility = Operation.multiply(Operation.multiply(jacobianData, level.getPreviousLevel().getWeight()
-					.transpose()), level.getPreviousLevel().getSensibility());
+			sensibility = Operation.multiply(Operation.multiply(jacobianData, level.getNextLevel().getWeight()
+					.transpose()), level.getNextLevel().getSensibility());
 			level.setSensibility(sensibility);
 		}
 	}
@@ -62,7 +62,7 @@ public class BackPropagationRule implements Rule {
 		if (!level.hasNext()) {
 			setWeightAndBias(level);
 		} else {
-			level.getPreviousLevel().setWeight(level.getPreviousLevel().getAmendWeight());
+			level.getNextLevel().setWeight(level.getNextLevel().getAmendWeight());
 			setWeightAndBias(level);
 		}
 	}
