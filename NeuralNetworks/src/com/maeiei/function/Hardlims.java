@@ -1,4 +1,6 @@
-package com.maeiei;
+package com.maeiei.function;
+
+import com.maeiei.Matrix;
 
 public class Hardlims implements Function {
 

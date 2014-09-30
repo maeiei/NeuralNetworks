@@ -2,10 +2,10 @@ package com.maeiei.test;
 
 import org.junit.Test;
 import com.maeiei.Level;
-import com.maeiei.Logsig;
 import com.maeiei.Matrix;
 import com.maeiei.Purelin;
 import com.maeiei.BackPropagationRule;
+import com.maeiei.function.Logsig;
 
 public class BackPropagationRuleTest {
 

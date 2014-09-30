@@ -3,14 +3,11 @@ package com.maeiei.test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.*;
 import static org.hamcrest.core.IsEqual.*;
-
 import java.text.DecimalFormat;
-
 import org.junit.Test;
-
-import com.maeiei.Function;
-import com.maeiei.Logsig;
 import com.maeiei.Matrix;
+import com.maeiei.function.Function;
+import com.maeiei.function.Logsig;
 
 public class LogsigTest {
 	@Test

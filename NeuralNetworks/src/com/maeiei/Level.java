@@ -1,5 +1,7 @@
 package com.maeiei;
 
+import com.maeiei.function.Function;
+
 public class Level implements Nullable {
 
 	private Level previousLevel;

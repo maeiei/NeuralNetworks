@@ -3,12 +3,12 @@ package com.maeiei.test;
 import org.junit.Test;
 import com.maeiei.BackPropagationRule;
 import com.maeiei.Level;
-import com.maeiei.Logsig;
 import com.maeiei.Matrix;
 import com.maeiei.MultiNetwork;
 import com.maeiei.Network;
 import com.maeiei.NeuralNetwork;
 import com.maeiei.Purelin;
+import com.maeiei.function.Logsig;
 
 public class NeuralNetworkTest {
 
