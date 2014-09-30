@@ -7,8 +7,8 @@ import com.maeiei.Matrix;
 import com.maeiei.MultiNetwork;
 import com.maeiei.Network;
 import com.maeiei.NeuralNetwork;
-import com.maeiei.Purelin;
 import com.maeiei.function.Logsig;
+import com.maeiei.function.Purelin;
 
 public class NeuralNetworkTest {
 
