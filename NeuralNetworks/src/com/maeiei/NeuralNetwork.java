@@ -19,6 +19,7 @@ public class NeuralNetwork {
 	}
 
 	public void forword() {
+		network.run();
 		output = network.getOutput();
 	}
 
@@ -28,5 +29,9 @@ public class NeuralNetwork {
 
 	public Matrix getOutput() {
 		return output;
+	}
+	
+	public void setNetwork(Network network) {
+		this.network = network;
 	}
 }

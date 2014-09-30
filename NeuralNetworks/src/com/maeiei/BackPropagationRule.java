@@ -42,7 +42,7 @@ public class BackPropagationRule implements Rule {
 			amendSensibility(next);
 			amendWeightAndBias(next);
 			next = next.getPreviousLevel();
-		} while (next.hasPrevious());
+		} while (next.isNotNull());
 	}
 
 	private void amendSensibility(Level level) {
@@ -52,30 +52,23 @@ public class BackPropagationRule implements Rule {
 			level.setSensibility(sensibility);
 		} else {
 			Matrix jacobianData = level.getDerivateOutput().jacobian();
-			sensibility = Operation.multiply(Operation.multiply(jacobianData, level.getNextLevel().getWeight()
-					.transpose()), level.getNextLevel().getSensibility());
+			sensibility = Operation.multiply(Operation.multiply(jacobianData, level.getNextLevel()
+					.getAmendWeight().transpose()), level.getNextLevel().getSensibility());
 			level.setSensibility(sensibility);
 		}
 	}
 
 	private void amendWeightAndBias(Level level) {
 		if (!level.hasNext()) {
-			setWeightAndBias(level);
-		} else {
-			level.getNextLevel().setWeight(level.getNextLevel().getAmendWeight());
-			setWeightAndBias(level);
-		}
-	}
-
-	private void setWeightAndBias(Level level) {
-		if (!level.hasNext()) {
+			level.setAmendWeight(level.getWeight());
 			level.setWeight(Operation.subtract(level.getWeight(),
 					Operation.multiply(Operation.multiply(sensibility, alpha), level.getInput().transpose())));
 			level.setBias(Operation.subtract(level.getBias(), Operation.multiply(sensibility, alpha)));
 		} else {
-			level.setAmendWeight(Operation.subtract(level.getWeight(),
+			level.setAmendWeight(level.getWeight());
+			level.setWeight(Operation.subtract(level.getWeight(),
 					Operation.multiply(Operation.multiply(sensibility, alpha), level.getInput().transpose())));
-			level.setAmendBias(Operation.subtract(level.getBias(), Operation.multiply(sensibility, alpha)));
+			level.setBias(Operation.subtract(level.getBias(), Operation.multiply(sensibility, alpha)));
 		}
 	}
 }

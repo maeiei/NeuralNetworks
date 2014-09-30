@@ -1,5 +1,6 @@
 package com.maeiei.test;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import com.maeiei.BackPropagationRule;
 import com.maeiei.Level;
@@ -12,7 +13,8 @@ import com.maeiei.function.Purelin;
 
 public class NeuralNetworkTest {
 
-	@Test	
+	@Test
+	@Ignore
 	public void testBackPropagationRule() {
 		NeuralNetwork neuralNetwork = initNeuralNetwork();
 		neuralNetwork.run();
@@ -23,27 +25,45 @@ public class NeuralNetworkTest {
 	public void testBackPropagationRuleCirculation() {
 		Network network = initNetwork();
 		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
-		for (int i = 0; i < 1; i++) {
+		int num = 0;
+		while (num < 1000) {
+			Matrix input = Matrix.unit(1, 0.0d);
+			Matrix initResult = Matrix.unit(1, 1.0d);
+			network.setInput(input);
+			network.setInitResult(initResult);
+			neuralNetwork.setNetwork(network);
 			neuralNetwork.run();
-		}
-		System.out.println(neuralNetwork.getOutput());
-		Matrix input = Matrix.unit(1, 1.0d);
-		Matrix initResult = Matrix.unit(1, 1.707d);
-		network.setInput(input);
-		network.setInitResult(initResult);
-		neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
-		for (int i = 0; i < 1; i++) {
+			//System.out.println(neuralNetwork.getOutput());
+			input = Matrix.unit(1, 1.0d);
+			initResult = Matrix.unit(1, 1.707d);
+			network.setInput(input);
+			network.setInitResult(initResult);
+			neuralNetwork.setNetwork(network);
 			neuralNetwork.run();
+			//System.out.println(neuralNetwork.getOutput());
+			input = Matrix.unit(1, 2.0d);
+			initResult = Matrix.unit(1, 2.0d);
+			network.setInput(input);
+			network.setInitResult(initResult);
+			neuralNetwork.setNetwork(network);
+			neuralNetwork.run();
+			//System.out.println(neuralNetwork.getOutput());
+			num++;
 		}
+		network.setInput(Matrix.unit(1, 0.0d));
+		network.setInitResult(Matrix.unit(1, 1.0d));
+		neuralNetwork.setNetwork(network);
+		neuralNetwork.forword();
 		System.out.println(neuralNetwork.getOutput());
-		input = Matrix.unit(1, 2.0d);
-		initResult = Matrix.unit(1, 2.0d);
-		network.setInput(input);
-		network.setInitResult(initResult);
-		neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
-		for (int i = 0; i < 1; i++) {
-			neuralNetwork.forword();
-		}
+		network.setInput(Matrix.unit(1, 1.0d));
+		network.setInitResult(Matrix.unit(1, 1.707d));
+		neuralNetwork.setNetwork(network);
+		neuralNetwork.forword();
+		System.out.println(neuralNetwork.getOutput());
+		network.setInput(Matrix.unit(1, 2.0d));
+		network.setInitResult(Matrix.unit(1, 2.0d));
+		neuralNetwork.setNetwork(network);
+		neuralNetwork.forword();
 		System.out.println(neuralNetwork.getOutput());
 	}
 
@@ -69,10 +89,8 @@ public class NeuralNetworkTest {
 	private Network initNetwork() {
 		Level first = initFirstLevel();
 		Level last = initSecondLevel();
-		double[][] inputData = { { 0 } };
-		double[][] initResultData = { { 1 } };
-		Matrix input = new Matrix(inputData);
-		Matrix initResult = new Matrix(initResultData);
+		Matrix input = Matrix.unit(1, 1.0d);
+		Matrix initResult = Matrix.unit(1, 1.707d);
 		Network network = new MultiNetwork(input, initResult);
 		network.add(first);
 		network.add(last);
@@ -82,10 +100,8 @@ public class NeuralNetworkTest {
 	private NeuralNetwork initNeuralNetwork() {
 		Level first = initFirstLevel();
 		Level last = initSecondLevel();
-		double[][] inputData = { { 0 } };
-		double[][] initResultData = { { 1 } };
-		Matrix input = new Matrix(inputData);
-		Matrix initResult = new Matrix(initResultData);
+		Matrix input = Matrix.unit(1, 1.0d);
+		Matrix initResult = Matrix.unit(1, 1.707d);
 		Network network = new MultiNetwork(input, initResult);
 		network.add(first);
 		network.add(last);

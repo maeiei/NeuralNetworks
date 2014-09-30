@@ -35,13 +35,17 @@ public class MultiNetwork implements Network {
 		}
 	}
 
-	public Matrix getOutput() {
+	@Override
+	public void run() {
 		Level next = head;
 		while (next.hasNext()) {
 			next.getNextLevel().setInput(next.getOutput());
 			next = next.getNextLevel();
 		}
-		return next.getOutput();
+	}
+
+	public Matrix getOutput() {
+		return getLast().getOutput();
 	}
 
 	public Matrix getInput() {
@@ -53,11 +57,11 @@ public class MultiNetwork implements Network {
 	}
 
 	public void setInput(Matrix input) {
-		this.input = input;
+		head.setInput(input);
 	}
 
 	public void setInitResult(Matrix initResult) {
-		this.initResult = initResult;
+		getLast().setInitResult(initResult);
 	}
 
 	public Level getHead() {
