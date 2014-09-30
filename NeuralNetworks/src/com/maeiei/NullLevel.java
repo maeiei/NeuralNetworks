@@ -1,6 +1,6 @@
 package com.maeiei;
 
-public class NullLevel extends Level implements Nullable {
+public class NullLevel extends Level {
 
 	private static final NullLevel nullLevel = new NullLevel();
 
