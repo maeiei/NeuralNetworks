@@ -18,7 +18,7 @@ public class LevelTest {
 		Matrix input = new Matrix(inputData);
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
-		Level level = new Level(weight, bias, new Purelin(), true, false);
+		Level level = new Level(weight, bias, new Purelin());
 		level.setInput(input);
 		Matrix result = level.getOutput();
 		assertEquals("结果的行数：", result.getRow(), 1);
@@ -34,7 +34,7 @@ public class LevelTest {
 		Matrix input = new Matrix(inputData);
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
-		Level level = new Level(weight, bias, new Purelin(), true, false);
+		Level level = new Level(weight, bias, new Purelin());
 		level.setInput(input);
 		Matrix result = level.getOutput();
 		assertEquals("结果的行数：", result.getRow(), 2);
@@ -54,7 +54,7 @@ public class LevelTest {
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
 		Logsig logsig = new Logsig();
-		Level level = new Level(weight, bias, logsig, true, false);
+		Level level = new Level(weight, bias, logsig);
 		level.setInput(input);
 		Matrix firstOutput = level.getOutput();
 		System.out.println("第一层输出：" + firstOutput);
@@ -63,7 +63,7 @@ public class LevelTest {
 		Matrix weightSecond = new Matrix(weightSecondData);
 		Matrix biasSecond = new Matrix(biasSecondData);
 		Purelin purelin = new Purelin();
-		Level secondLevel = new Level(weightSecond, biasSecond, purelin, false, true);
+		Level secondLevel = new Level(weightSecond, biasSecond, purelin);
 		secondLevel.setInput(firstOutput);
 		secondLevel.setInitResult(initResult);
 		Matrix secondOutput = secondLevel.getOutput();

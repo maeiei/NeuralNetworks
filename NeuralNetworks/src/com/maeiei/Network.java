@@ -1,28 +1,14 @@
 package com.maeiei;
 
-import java.util.LinkedList;
-
 public interface Network {
 
-	public abstract void add(Level level);
+	public Matrix getOutput();
 
-	public abstract void addFirst(Level inputLevel);
+	public void setInput(Matrix input);
 
-	public abstract void addLast(Level outputLevel);
+	public void setInitResult(Matrix initResult);
 
-	public abstract LinkedList<Level> getLevels();
+	public void add(Level level);
 
-	public abstract Level getFirst();
-
-	public abstract Level getLast();
-
-	public abstract Matrix getInput();
-
-	public abstract Matrix getInitResult();
-
-	public abstract Matrix getOutput();
-
-	public abstract void setInput(Matrix input);
-
-	public abstract void setInitResult(Matrix initResult);
+	public Level getHead();
 }

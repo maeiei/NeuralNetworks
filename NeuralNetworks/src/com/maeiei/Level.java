@@ -1,10 +1,10 @@
 package com.maeiei;
 
-public class Level {
+public class Level implements Nullable{
 
-	private boolean lastLevel;
+	private Level previousLevel;
 
-	private boolean firstHead;
+	private Level nextLevel;
 
 	private Matrix input;
 
@@ -27,22 +27,21 @@ public class Level {
 	private Matrix amendBias;
 
 	private Function function;
-
-	public Level(Matrix weight, Matrix bias, Function function) {
-		this(weight, bias, function, true, true);
+	
+	protected Level() {
+		this(null, null, null, null, null);
 	}
 
-	public Level(Matrix weight, Matrix bias, Function function, boolean firstHead, boolean lastLevel) {
+	public Level(Matrix weight, Matrix bias, Function function) {
+		this(weight, bias, function, NullLevel.getNull(), NullLevel.getNull());
+	}
+
+	public Level(Matrix weight, Matrix bias, Function function, Level previousLevel, Level nextLevel) {
 		this.weight = weight;
 		this.bias = bias;
 		this.function = function;
-		this.firstHead = firstHead;
-		this.lastLevel = lastLevel;
-	}
-
-	private void calculateDerivate(Matrix input, Matrix weight, Matrix bias, Function function) {
-		output = function.function(Operation.add(Operation.multiply(weight, input), bias));
-		derivateOutput = function.derivate(Operation.add(Operation.multiply(weight, input), bias));
+		this.previousLevel = previousLevel;
+		this.nextLevel = nextLevel;
 	}
 
 	public Matrix getInput() {
@@ -86,13 +85,15 @@ public class Level {
 	}
 
 	public Matrix getError() {
-		if (isLastLevel())
+		if (!hasNext())
 			error = Operation.subtract(initResult, getOutput());
 		return error;
 	}
 
 	public Matrix getOutput() {
-		calculateDerivate(input, weight, bias, function);
+		output = function.function(Operation.add(Operation.multiply(weight, input), bias));
+		if (!hasNext())
+			error = Operation.subtract(initResult, output);
 		return output;
 	}
 
@@ -105,18 +106,16 @@ public class Level {
 	}
 
 	public Matrix getDerivateOutput() {
-		calculateDerivate(input, weight, bias, function);
-		if (isLastLevel())
-			error = Operation.subtract(initResult, output);
+		derivateOutput = function.derivate(Operation.add(Operation.multiply(weight, input), bias));
 		return derivateOutput;
 	}
 
-	public boolean isLastLevel() {
-		return lastLevel;
+	public boolean hasPrevious() {
+		return previousLevel != null ? true : false;
 	}
 
-	public void setLastLevel(boolean lastLevel) {
-		this.lastLevel = lastLevel;
+	public boolean hasNext() {
+		return nextLevel != null ? true : false;
 	}
 
 	public Matrix getSensibility() {
@@ -139,11 +138,24 @@ public class Level {
 		this.amendBias = amendBias;
 	}
 
-	public boolean isFirstHead() {
-		return firstHead;
+	public Level getPreviousLevel() {
+		return previousLevel;
 	}
 
-	public void setFirstHead(boolean firstHead) {
-		this.firstHead = firstHead;
+	public void setPreviousLevel(Level previousLevel) {
+		this.previousLevel = previousLevel;
+	}
+
+	public Level getNextLevel() {
+		return nextLevel;
+	}
+
+	public void setNextLevel(Level nextLevel) {
+		this.nextLevel = nextLevel;
+	}
+
+	@Override
+	public boolean isNull() {
+		return false;
 	}
 }

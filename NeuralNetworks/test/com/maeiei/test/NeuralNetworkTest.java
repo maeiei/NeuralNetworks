@@ -1,6 +1,5 @@
 package com.maeiei.test;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import com.maeiei.BackPropagationRule;
 import com.maeiei.Level;
@@ -13,8 +12,7 @@ import com.maeiei.Purelin;
 
 public class NeuralNetworkTest {
 
-	@Test
-	@Ignore
+	@Test	
 	public void testBackPropagationRule() {
 		NeuralNetwork neuralNetwork = initNeuralNetwork();
 		neuralNetwork.run();
@@ -24,7 +22,7 @@ public class NeuralNetworkTest {
 	@Test
 	public void testBackPropagationRuleCirculation() {
 		Network network = initNetwork();
-		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule());
+		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
 		for (int i = 0; i < 1; i++) {
 			neuralNetwork.run();
 		}
@@ -33,7 +31,7 @@ public class NeuralNetworkTest {
 		Matrix initResult = Matrix.unit(1, 1.707d);
 		network.setInput(input);
 		network.setInitResult(initResult);
-		neuralNetwork = new NeuralNetwork(network, new BackPropagationRule());
+		neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
 		for (int i = 0; i < 1; i++) {
 			neuralNetwork.run();
 		}
@@ -42,7 +40,7 @@ public class NeuralNetworkTest {
 		initResult = Matrix.unit(1, 2.0d);
 		network.setInput(input);
 		network.setInitResult(initResult);
-		neuralNetwork = new NeuralNetwork(network, new BackPropagationRule());
+		neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
 		for (int i = 0; i < 1; i++) {
 			neuralNetwork.forword();
 		}
@@ -55,7 +53,7 @@ public class NeuralNetworkTest {
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
 		Logsig logsig = new Logsig();
-		Level level = new Level(weight, bias, logsig, true, false);
+		Level level = new Level(weight, bias, logsig);
 		return level;
 	}
 
@@ -64,7 +62,7 @@ public class NeuralNetworkTest {
 		double[][] biasSecondData = { { 0.48 } };
 		Matrix weightSecond = new Matrix(weightSecondData);
 		Matrix biasSecond = new Matrix(biasSecondData);
-		Level secondLevel = new Level(weightSecond, biasSecond, new Purelin(), false, true);
+		Level secondLevel = new Level(weightSecond, biasSecond, new Purelin());
 		return secondLevel;
 	}
 
@@ -76,8 +74,8 @@ public class NeuralNetworkTest {
 		Matrix input = new Matrix(inputData);
 		Matrix initResult = new Matrix(initResultData);
 		Network network = new MultiNetwork(input, initResult);
-		network.addFirst(first);
-		network.addLast(last);
+		network.add(first);
+		network.add(last);
 		return network;
 	}
 
@@ -89,9 +87,9 @@ public class NeuralNetworkTest {
 		Matrix input = new Matrix(inputData);
 		Matrix initResult = new Matrix(initResultData);
 		Network network = new MultiNetwork(input, initResult);
-		network.addFirst(first);
-		network.addLast(last);
-		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(last));
+		network.add(first);
+		network.add(last);
+		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(first));
 		return neuralNetwork;
 	}
 }

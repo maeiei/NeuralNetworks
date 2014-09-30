@@ -16,7 +16,7 @@ public class BackPropagationRuleTest {
 		System.out.println(secondLevel.getOutput());
 		BackPropagationRule rule = new BackPropagationRule(secondLevel);
 		rule.amend();
-		rule = new BackPropagationRule(level, secondLevel);
+		rule = new BackPropagationRule(level);
 		rule.amend();
 		secondLevel.setInput(level.getOutput());
 		System.out.println(secondLevel.getOutput());
@@ -32,7 +32,7 @@ public class BackPropagationRuleTest {
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
 		Logsig logsig = new Logsig();
-		Level level = new Level(weight, bias, logsig, true, false);
+		Level level = new Level(weight, bias, logsig);
 		level.setInput(input);
 		level.setInitResult(initResult);
 		return level;
@@ -45,7 +45,7 @@ public class BackPropagationRuleTest {
 		double[][] biasSecondData = { { 0.48 } };
 		Matrix weightSecond = new Matrix(weightSecondData);
 		Matrix biasSecond = new Matrix(biasSecondData);
-		Level secondLevel = new Level(weightSecond, biasSecond, new Purelin(), false, true);
+		Level secondLevel = new Level(weightSecond, biasSecond, new Purelin());
 		secondLevel.setInput(firstOutput);
 		secondLevel.setInitResult(initResult);
 		return secondLevel;

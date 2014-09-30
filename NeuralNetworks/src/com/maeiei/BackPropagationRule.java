@@ -1,86 +1,81 @@
 package com.maeiei;
 
-public class BackPropagationRule implements Rule{
-	
+public class BackPropagationRule implements Rule {
+
 	private static final double[][] constantData = { { -2 } };
 
 	public static final Matrix CONSTANT = new Matrix(constantData);
 
 	public static final double ALPHA = 0.1d;
 
-	private Level previousLevel;
-
-	private Level currentLevel;
+	private Level head;
 
 	private Matrix constant;
 
 	private Matrix sensibility;
 
 	private double alpha;
-	
-	public BackPropagationRule() {
-		this(null, null, CONSTANT, ALPHA);
+
+	public BackPropagationRule(Level level) {
+		this(level, CONSTANT, ALPHA);
 	}
 
-	public BackPropagationRule(Level currentLevel) {
-		this(currentLevel, null, CONSTANT, ALPHA);
+	public BackPropagationRule(Network network) {
+		this(network, CONSTANT, ALPHA);
 	}
 
-	public BackPropagationRule(Level currentLevel, Level nextLevel) {
-		this(currentLevel, nextLevel, CONSTANT, ALPHA);
+	public BackPropagationRule(Level level, Matrix constant, double alpha) {
+		this.head = level;
+		this.constant = constant;
+		this.alpha = alpha;
 	}
 
-	public BackPropagationRule(Level currentLevel, Matrix constant, double alpha) {
-		this(currentLevel, null, constant, alpha);
-	}
-
-	public BackPropagationRule(Level currentLevel, Level nextLevel, Matrix constant, double alpha) {
-		this.currentLevel = currentLevel;
-		this.previousLevel = nextLevel;
+	public BackPropagationRule(Network network, Matrix constant, double alpha) {
+		this.head = network.getHead();
 		this.constant = constant;
 		this.alpha = alpha;
 	}
 
 	public void amend() {
-		amendSensibility();
-		amendWeightAndBias();
+		Level next = head;
+		do {
+			amendSensibility(next);
+			amendWeightAndBias(next);
+			next = next.getNextLevel();
+		} while (next.hasNext());
 	}
 
-	private void amendSensibility() {
-		if (currentLevel.isLastLevel()) {
-			sensibility = Operation.multiply(
-					Operation.multiply(constant, currentLevel.getFunction().derivate(currentLevel.getInput())),
-					currentLevel.getError());
-			currentLevel.setSensibility(sensibility);
+	private void amendSensibility(Level level) {
+		if (!level.hasNext()) {
+			sensibility = Operation.multiply(Operation.multiply(constant, level.getDerivateOutput()),
+					level.getError());
+			level.setSensibility(sensibility);
 		} else {
-			Matrix jacobianData = currentLevel.getDerivateOutput().jacobian();
-			sensibility = Operation.multiply(
-					Operation.multiply(jacobianData, previousLevel.getWeight().transpose()),
-					previousLevel.getSensibility());
-			currentLevel.setSensibility(sensibility);
+			Matrix jacobianData = level.getDerivateOutput().jacobian();
+			sensibility = Operation.multiply(Operation.multiply(jacobianData, level.getPreviousLevel().getWeight()
+					.transpose()), level.getPreviousLevel().getSensibility());
+			level.setSensibility(sensibility);
 		}
 	}
 
-	private void amendWeightAndBias() {
-		if (currentLevel.isLastLevel()) {
-			setWeightAndBias();
+	private void amendWeightAndBias(Level level) {
+		if (!level.hasNext()) {
+			setWeightAndBias(level);
 		} else {
-			previousLevel.setWeight(previousLevel.getAmendWeight());
-			setWeightAndBias();
+			level.getPreviousLevel().setWeight(level.getPreviousLevel().getAmendWeight());
+			setWeightAndBias(level);
 		}
 	}
 
-	private void setWeightAndBias() {
-		if (currentLevel.isFirstHead()) {
-			currentLevel.setWeight(Operation.subtract(currentLevel.getWeight(), Operation.multiply(
-					Operation.multiply(sensibility, alpha), currentLevel.getInput().transpose())));
-			currentLevel
-					.setBias(Operation.subtract(currentLevel.getBias(), Operation.multiply(sensibility, alpha)));
+	private void setWeightAndBias(Level level) {
+		if (!level.hasNext()) {
+			level.setWeight(Operation.subtract(level.getWeight(),
+					Operation.multiply(Operation.multiply(sensibility, alpha), level.getInput().transpose())));
+			level.setBias(Operation.subtract(level.getBias(), Operation.multiply(sensibility, alpha)));
 		} else {
-			currentLevel.setAmendWeight(Operation.subtract(currentLevel.getWeight(), Operation.multiply(
-					Operation.multiply(sensibility, alpha), currentLevel.getInput().transpose())));
-			currentLevel.setAmendBias(Operation.subtract(currentLevel.getBias(),
-					Operation.multiply(sensibility, alpha)));
+			level.setAmendWeight(Operation.subtract(level.getWeight(),
+					Operation.multiply(Operation.multiply(sensibility, alpha), level.getInput().transpose())));
+			level.setAmendBias(Operation.subtract(level.getBias(), Operation.multiply(sensibility, alpha)));
 		}
 	}
 }
