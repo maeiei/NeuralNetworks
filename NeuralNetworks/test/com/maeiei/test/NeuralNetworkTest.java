@@ -21,12 +21,11 @@ public class NeuralNetworkTest {
 		System.out.println(neuralNetwork.getOutput());
 	}
 
-	@Test
 	public void testBackPropagationRuleCirculation() {
 		Network network = initNetwork();
 		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
 		int num = 0;
-		while (num < 1000) {
+		while (num < 10000) {
 			Matrix input = Matrix.unit(1, 0.0d);
 			Matrix initResult = Matrix.unit(1, 1.0d);
 			network.setInput(input);
@@ -41,8 +40,8 @@ public class NeuralNetworkTest {
 			neuralNetwork.setNetwork(network);
 			neuralNetwork.run();
 			//System.out.println(neuralNetwork.getOutput());
-			input = Matrix.unit(1, 2.0d);
-			initResult = Matrix.unit(1, 2.0d);
+			input = Matrix.unit(1, -1.0d);
+			initResult = Matrix.unit(1, 0.29289d);
 			network.setInput(input);
 			network.setInitResult(initResult);
 			neuralNetwork.setNetwork(network);
@@ -50,18 +49,77 @@ public class NeuralNetworkTest {
 			//System.out.println(neuralNetwork.getOutput());
 			num++;
 		}
-//		network.setInput(Matrix.unit(1, 0.0d));
-//		network.setInitResult(Matrix.unit(1, 1.0d));
-//		neuralNetwork.setNetwork(network);
-//		neuralNetwork.forword();
-//		System.out.println(neuralNetwork.getOutput());
-//		network.setInput(Matrix.unit(1, 1.0d));
-//		network.setInitResult(Matrix.unit(1, 1.707d));
-//		neuralNetwork.setNetwork(network);
-//		neuralNetwork.forword();
-//		System.out.println(neuralNetwork.getOutput());
-		network.setInput(Matrix.unit(1, -1d));
-		//network.setInitResult(Matrix.unit(1, 0.29289d));
+		network.setInput(Matrix.unit(1, 2.0d));
+		//network.setInitResult(Matrix.unit(1, 2.0d));
+		neuralNetwork.setNetwork(network);
+		neuralNetwork.forword();
+		System.out.println(neuralNetwork.getOutput());
+	}
+	@Test
+	public void testBackPropagationRuleCirculation1() {
+		Network network = initNetwork();
+		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
+		int num = 0;
+		while (num < 10000) {
+			Matrix input = Matrix.unit(1, 0.0d);
+			Matrix initResult = Matrix.unit(1, 2.0d);
+			network.setInput(input);
+			network.setInitResult(initResult);
+			neuralNetwork.setNetwork(network);
+			neuralNetwork.run();
+			input = Matrix.unit(1, -1.0d);
+			initResult = Matrix.unit(1, 1.0d);
+			network.setInput(input);
+			network.setInitResult(initResult);
+			neuralNetwork.setNetwork(network);
+			neuralNetwork.run();
+			input = Matrix.unit(1, -2.0d);
+			initResult = Matrix.unit(1, -2.0d);
+			network.setInput(input);
+			network.setInitResult(initResult);
+			neuralNetwork.setNetwork(network);
+			neuralNetwork.run();
+			input = Matrix.unit(1, -0.5d);
+			initResult = Matrix.unit(1, 1.75d);
+			network.setInput(input);
+			network.setInitResult(initResult);
+			neuralNetwork.setNetwork(network);
+			neuralNetwork.run();
+			input = Matrix.unit(1, 1.0d);
+			initResult = Matrix.unit(1, 1.0d);
+			network.setInput(input);
+			network.setInitResult(initResult);
+			neuralNetwork.setNetwork(network);
+			neuralNetwork.run();
+			input = Matrix.unit(1, 0.5d);
+			initResult = Matrix.unit(1, 1.75d);
+			network.setInput(input);
+			network.setInitResult(initResult);
+			neuralNetwork.setNetwork(network);
+			neuralNetwork.run();
+			num++;
+		}
+		network.setInput(Matrix.unit(1, 0d));
+		neuralNetwork.setNetwork(network);
+		neuralNetwork.forword();
+		System.out.println(neuralNetwork.getOutput());
+		network.setInput(Matrix.unit(1, -1.0d));
+		neuralNetwork.setNetwork(network);
+		neuralNetwork.forword();
+		System.out.println(neuralNetwork.getOutput());
+		network.setInput(Matrix.unit(1, -2.0d));
+		neuralNetwork.setNetwork(network);
+		neuralNetwork.forword();
+		System.out.println(neuralNetwork.getOutput());
+		network.setInput(Matrix.unit(1, -0.5d));
+		neuralNetwork.setNetwork(network);
+		neuralNetwork.forword();
+		System.out.println(neuralNetwork.getOutput());
+		network.setInput(Matrix.unit(1, 0.5d));
+		neuralNetwork.setNetwork(network);
+		neuralNetwork.forword();
+		System.out.println(neuralNetwork.getOutput());
+		network.setInput(Matrix.unit(1, 2d));
 		neuralNetwork.setNetwork(network);
 		neuralNetwork.forword();
 		System.out.println(neuralNetwork.getOutput());

@@ -6,7 +6,7 @@ public class BackPropagationRule implements Rule {
 
 	public static final Matrix CONSTANT = new Matrix(CONSTANTDATA);
 
-	public static final double ALPHA = 0.1d;
+	public static final double ALPHA = 0.2d;
 
 	private Level last;
 
