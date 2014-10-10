@@ -7,7 +7,7 @@
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
 		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@10.10.15.90:1521:orcl"
-			userId="top" password="top">
+			userId="bms" password="bms">
 		</jdbcConnection>
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
