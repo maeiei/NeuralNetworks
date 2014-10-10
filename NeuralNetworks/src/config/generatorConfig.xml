@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="D:\Oracle\Middleware\Oracle_Home2\oracle_common\rda\da\lib\ojdbc14.jar" />
+	<context id="OracleTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@10.10.15.90:1521:orcl"
+			userId="top" password="top">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<javaModelGenerator targetPackage="com.comtop.bms.budget.model" targetProject="BMS">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.comtop.bms.budget.dbconfig" targetProject="BMS">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.comtop.bms.budget.dao"
+			targetProject="BMS">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<table tableName="CBMIS_BUDGET_SUBJECT" domainObjectName="BudgetSubject" >
+			<columnOverride column="SUBJECT_ID" javaType="String" />
+		</table>
+	</context>
+</generatorConfiguration>
