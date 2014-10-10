@@ -24,10 +24,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	<!-- 创建SqlSessionFactory，同时指定数据源 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:com/comtop/bms/*/dbconfig/*Mapper.xml" />
-		<property name="plugins">
-			<ref bean="pageInterceptor" />
-		</property>
+		<property name="mapperLocations" value="classpath:com/maeiei/*/dbconfig/*Mapper.xml" />
 	</bean>
 
 	<!-- 可通过注解控制事务 -->
@@ -35,8 +32,6 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.comtop.bms.**.dao" />
+		<property name="basePackage" value="com.maeiei.**.dao" />
 	</bean>
-	<bean id="pageInterceptor" class="com.comtop.common.interceptor.PageInterceptor"></bean>
-
 </beans>

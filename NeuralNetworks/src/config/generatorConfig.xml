@@ -12,19 +12,17 @@
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
-		<javaModelGenerator targetPackage="com.comtop.bms.budget.model" targetProject="BMS">
+		<javaModelGenerator targetPackage="com.maeiei.model" targetProject="NeuralNetworks">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
-		<sqlMapGenerator targetPackage="com.comtop.bms.budget.dbconfig" targetProject="BMS">
+		<sqlMapGenerator targetPackage="com.maeiei.dbconfig" targetProject="NeuralNetworks">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.comtop.bms.budget.dao"
-			targetProject="BMS">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.maeiei.dao" targetProject="NeuralNetworks">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
-		<table tableName="CBMIS_BUDGET_SUBJECT" domainObjectName="BudgetSubject" >
-			<columnOverride column="SUBJECT_ID" javaType="String" />
+		<table tableName="TEST_DATA" domainObjectName="Data" >
 		</table>
 	</context>
 </generatorConfiguration>

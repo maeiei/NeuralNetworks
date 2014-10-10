@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maeiei.dao.DataMapper" >
+  <resultMap id="BaseResultMap" type="com.maeiei.model.Data" >
+    <result column="STOCK_ID" property="stockId" jdbcType="DECIMAL" />
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="OPEN" property="open" jdbcType="DECIMAL" />
+    <result column="HIGH" property="high" jdbcType="DECIMAL" />
+    <result column="LOW" property="low" jdbcType="DECIMAL" />
+    <result column="CLOSE" property="close" jdbcType="DECIMAL" />
+    <result column="MONEY" property="money" jdbcType="DECIMAL" />
+    <result column="STOCK_DATE" property="stockDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    STOCK_ID, ID, OPEN, HIGH, LOW, CLOSE, MONEY, STOCK_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.maeiei.model.DataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TEST_DATA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.maeiei.model.DataExample" >
+    delete from TEST_DATA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.maeiei.model.Data" >
+    insert into TEST_DATA (STOCK_ID, ID, OPEN, 
+      HIGH, LOW, CLOSE, MONEY, 
+      STOCK_DATE)
+    values (#{stockId,jdbcType=DECIMAL}, #{id,jdbcType=DECIMAL}, #{open,jdbcType=DECIMAL}, 
+      #{high,jdbcType=DECIMAL}, #{low,jdbcType=DECIMAL}, #{close,jdbcType=DECIMAL}, #{money,jdbcType=DECIMAL}, 
+      #{stockDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maeiei.model.Data" >
+    insert into TEST_DATA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stockId != null" >
+        STOCK_ID,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="open != null" >
+        OPEN,
+      </if>
+      <if test="high != null" >
+        HIGH,
+      </if>
+      <if test="low != null" >
+        LOW,
+      </if>
+      <if test="close != null" >
+        CLOSE,
+      </if>
+      <if test="money != null" >
+        MONEY,
+      </if>
+      <if test="stockDate != null" >
+        STOCK_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stockId != null" >
+        #{stockId,jdbcType=DECIMAL},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=DECIMAL},
+      </if>
+      <if test="high != null" >
+        #{high,jdbcType=DECIMAL},
+      </if>
+      <if test="low != null" >
+        #{low,jdbcType=DECIMAL},
+      </if>
+      <if test="close != null" >
+        #{close,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="stockDate != null" >
+        #{stockDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.maeiei.model.DataExample" resultType="java.lang.Integer" >
+    select count(*) from TEST_DATA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TEST_DATA
+    <set >
+      <if test="record.stockId != null" >
+        STOCK_ID = #{record.stockId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.open != null" >
+        OPEN = #{record.open,jdbcType=DECIMAL},
+      </if>
+      <if test="record.high != null" >
+        HIGH = #{record.high,jdbcType=DECIMAL},
+      </if>
+      <if test="record.low != null" >
+        LOW = #{record.low,jdbcType=DECIMAL},
+      </if>
+      <if test="record.close != null" >
+        CLOSE = #{record.close,jdbcType=DECIMAL},
+      </if>
+      <if test="record.money != null" >
+        MONEY = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stockDate != null" >
+        STOCK_DATE = #{record.stockDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TEST_DATA
+    set STOCK_ID = #{record.stockId,jdbcType=DECIMAL},
+      ID = #{record.id,jdbcType=DECIMAL},
+      OPEN = #{record.open,jdbcType=DECIMAL},
+      HIGH = #{record.high,jdbcType=DECIMAL},
+      LOW = #{record.low,jdbcType=DECIMAL},
+      CLOSE = #{record.close,jdbcType=DECIMAL},
+      MONEY = #{record.money,jdbcType=DECIMAL},
+      STOCK_DATE = #{record.stockDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
