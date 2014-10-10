@@ -1,78 +1,77 @@
 package com.maeiei.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class Data {
-    private Long stockId;
+    private double stockId;
 
-    private Long id;
+    private double id;
 
-    private BigDecimal open;
+    private double open;
 
-    private BigDecimal high;
+    private double high;
 
-    private BigDecimal low;
+    private double low;
 
-    private BigDecimal close;
+    private double close;
 
-    private BigDecimal money;
+    private double money;
 
     private Date stockDate;
 
-    public Long getStockId() {
+    public double getStockId() {
         return stockId;
     }
 
-    public void setStockId(Long stockId) {
+    public void setStockId(double stockId) {
         this.stockId = stockId;
     }
 
-    public Long getId() {
+    public double getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(double id) {
         this.id = id;
     }
 
-    public BigDecimal getOpen() {
+    public double getOpen() {
         return open;
     }
 
-    public void setOpen(BigDecimal open) {
+    public void setOpen(double open) {
         this.open = open;
     }
 
-    public BigDecimal getHigh() {
+    public double getHigh() {
         return high;
     }
 
-    public void setHigh(BigDecimal high) {
+    public void setHigh(double high) {
         this.high = high;
     }
 
-    public BigDecimal getLow() {
+    public double getLow() {
         return low;
     }
 
-    public void setLow(BigDecimal low) {
+    public void setLow(double low) {
         this.low = low;
     }
 
-    public BigDecimal getClose() {
+    public double getClose() {
         return close;
     }
 
-    public void setClose(BigDecimal close) {
+    public void setClose(double close) {
         this.close = close;
     }
 
-    public BigDecimal getMoney() {
+    public double getMoney() {
         return money;
     }
 
-    public void setMoney(BigDecimal money) {
+    public void setMoney(double money) {
         this.money = money;
     }
 

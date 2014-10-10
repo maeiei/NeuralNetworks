@@ -23,6 +23,13 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<table tableName="TEST_DATA" domainObjectName="Data" >
+			<columnOverride column="STOCK_ID" javaType="double" />
+			<columnOverride column="ID" javaType="double" />
+			<columnOverride column="OPEN" javaType="double" />
+			<columnOverride column="HIGH" javaType="double" />
+			<columnOverride column="LOW" javaType="double" />
+			<columnOverride column="CLOSE" javaType="double" />
+			<columnOverride column="MONEY" javaType="double" />
 		</table>
 	</context>
 </generatorConfiguration>

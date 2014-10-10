@@ -1,6 +1,5 @@
 package com.maeiei.model;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -143,53 +142,53 @@ public class DataCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andStockIdEqualTo(Long value) {
-            addCriterion("STOCK_ID =", value, "stockId");
+        public Criteria andStockIdEqualTo(double value) {
+            addCriterion("STOCK_ID =", new Double(value), "stockId");
             return (Criteria) this;
         }
 
-        public Criteria andStockIdNotEqualTo(Long value) {
-            addCriterion("STOCK_ID <>", value, "stockId");
+        public Criteria andStockIdNotEqualTo(double value) {
+            addCriterion("STOCK_ID <>", new Double(value), "stockId");
             return (Criteria) this;
         }
 
-        public Criteria andStockIdGreaterThan(Long value) {
-            addCriterion("STOCK_ID >", value, "stockId");
+        public Criteria andStockIdGreaterThan(double value) {
+            addCriterion("STOCK_ID >", new Double(value), "stockId");
             return (Criteria) this;
         }
 
-        public Criteria andStockIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("STOCK_ID >=", value, "stockId");
+        public Criteria andStockIdGreaterThanOrEqualTo(double value) {
+            addCriterion("STOCK_ID >=", new Double(value), "stockId");
             return (Criteria) this;
         }
 
-        public Criteria andStockIdLessThan(Long value) {
-            addCriterion("STOCK_ID <", value, "stockId");
+        public Criteria andStockIdLessThan(double value) {
+            addCriterion("STOCK_ID <", new Double(value), "stockId");
             return (Criteria) this;
         }
 
-        public Criteria andStockIdLessThanOrEqualTo(Long value) {
-            addCriterion("STOCK_ID <=", value, "stockId");
+        public Criteria andStockIdLessThanOrEqualTo(double value) {
+            addCriterion("STOCK_ID <=", new Double(value), "stockId");
             return (Criteria) this;
         }
 
-        public Criteria andStockIdIn(List<Long> values) {
+        public Criteria andStockIdIn(List<Double> values) {
             addCriterion("STOCK_ID in", values, "stockId");
             return (Criteria) this;
         }
 
-        public Criteria andStockIdNotIn(List<Long> values) {
+        public Criteria andStockIdNotIn(List<Double> values) {
             addCriterion("STOCK_ID not in", values, "stockId");
             return (Criteria) this;
         }
 
-        public Criteria andStockIdBetween(Long value1, Long value2) {
-            addCriterion("STOCK_ID between", value1, value2, "stockId");
+        public Criteria andStockIdBetween(double value1, double value2) {
+            addCriterion("STOCK_ID between", new Double(value1), new Double(value2), "stockId");
             return (Criteria) this;
         }
 
-        public Criteria andStockIdNotBetween(Long value1, Long value2) {
-            addCriterion("STOCK_ID not between", value1, value2, "stockId");
+        public Criteria andStockIdNotBetween(double value1, double value2) {
+            addCriterion("STOCK_ID not between", new Double(value1), new Double(value2), "stockId");
             return (Criteria) this;
         }
 
@@ -203,53 +202,53 @@ public class DataCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Long value) {
-            addCriterion("ID =", value, "id");
+        public Criteria andIdEqualTo(double value) {
+            addCriterion("ID =", new Double(value), "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Long value) {
-            addCriterion("ID <>", value, "id");
+        public Criteria andIdNotEqualTo(double value) {
+            addCriterion("ID <>", new Double(value), "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Long value) {
-            addCriterion("ID >", value, "id");
+        public Criteria andIdGreaterThan(double value) {
+            addCriterion("ID >", new Double(value), "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("ID >=", value, "id");
+        public Criteria andIdGreaterThanOrEqualTo(double value) {
+            addCriterion("ID >=", new Double(value), "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Long value) {
-            addCriterion("ID <", value, "id");
+        public Criteria andIdLessThan(double value) {
+            addCriterion("ID <", new Double(value), "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Long value) {
-            addCriterion("ID <=", value, "id");
+        public Criteria andIdLessThanOrEqualTo(double value) {
+            addCriterion("ID <=", new Double(value), "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Long> values) {
+        public Criteria andIdIn(List<Double> values) {
             addCriterion("ID in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Long> values) {
+        public Criteria andIdNotIn(List<Double> values) {
             addCriterion("ID not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Long value1, Long value2) {
-            addCriterion("ID between", value1, value2, "id");
+        public Criteria andIdBetween(double value1, double value2) {
+            addCriterion("ID between", new Double(value1), new Double(value2), "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Long value1, Long value2) {
-            addCriterion("ID not between", value1, value2, "id");
+        public Criteria andIdNotBetween(double value1, double value2) {
+            addCriterion("ID not between", new Double(value1), new Double(value2), "id");
             return (Criteria) this;
         }
 
@@ -263,53 +262,53 @@ public class DataCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andOpenEqualTo(BigDecimal value) {
-            addCriterion("OPEN =", value, "open");
+        public Criteria andOpenEqualTo(double value) {
+            addCriterion("OPEN =", new Double(value), "open");
             return (Criteria) this;
         }
 
-        public Criteria andOpenNotEqualTo(BigDecimal value) {
-            addCriterion("OPEN <>", value, "open");
+        public Criteria andOpenNotEqualTo(double value) {
+            addCriterion("OPEN <>", new Double(value), "open");
             return (Criteria) this;
         }
 
-        public Criteria andOpenGreaterThan(BigDecimal value) {
-            addCriterion("OPEN >", value, "open");
+        public Criteria andOpenGreaterThan(double value) {
+            addCriterion("OPEN >", new Double(value), "open");
             return (Criteria) this;
         }
 
-        public Criteria andOpenGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("OPEN >=", value, "open");
+        public Criteria andOpenGreaterThanOrEqualTo(double value) {
+            addCriterion("OPEN >=", new Double(value), "open");
             return (Criteria) this;
         }
 
-        public Criteria andOpenLessThan(BigDecimal value) {
-            addCriterion("OPEN <", value, "open");
+        public Criteria andOpenLessThan(double value) {
+            addCriterion("OPEN <", new Double(value), "open");
             return (Criteria) this;
         }
 
-        public Criteria andOpenLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("OPEN <=", value, "open");
+        public Criteria andOpenLessThanOrEqualTo(double value) {
+            addCriterion("OPEN <=", new Double(value), "open");
             return (Criteria) this;
         }
 
-        public Criteria andOpenIn(List<BigDecimal> values) {
+        public Criteria andOpenIn(List<Double> values) {
             addCriterion("OPEN in", values, "open");
             return (Criteria) this;
         }
 
-        public Criteria andOpenNotIn(List<BigDecimal> values) {
+        public Criteria andOpenNotIn(List<Double> values) {
             addCriterion("OPEN not in", values, "open");
             return (Criteria) this;
         }
 
-        public Criteria andOpenBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("OPEN between", value1, value2, "open");
+        public Criteria andOpenBetween(double value1, double value2) {
+            addCriterion("OPEN between", new Double(value1), new Double(value2), "open");
             return (Criteria) this;
         }
 
-        public Criteria andOpenNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("OPEN not between", value1, value2, "open");
+        public Criteria andOpenNotBetween(double value1, double value2) {
+            addCriterion("OPEN not between", new Double(value1), new Double(value2), "open");
             return (Criteria) this;
         }
 
@@ -323,53 +322,53 @@ public class DataCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andHighEqualTo(BigDecimal value) {
-            addCriterion("HIGH =", value, "high");
+        public Criteria andHighEqualTo(double value) {
+            addCriterion("HIGH =", new Double(value), "high");
             return (Criteria) this;
         }
 
-        public Criteria andHighNotEqualTo(BigDecimal value) {
-            addCriterion("HIGH <>", value, "high");
+        public Criteria andHighNotEqualTo(double value) {
+            addCriterion("HIGH <>", new Double(value), "high");
             return (Criteria) this;
         }
 
-        public Criteria andHighGreaterThan(BigDecimal value) {
-            addCriterion("HIGH >", value, "high");
+        public Criteria andHighGreaterThan(double value) {
+            addCriterion("HIGH >", new Double(value), "high");
             return (Criteria) this;
         }
 
-        public Criteria andHighGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("HIGH >=", value, "high");
+        public Criteria andHighGreaterThanOrEqualTo(double value) {
+            addCriterion("HIGH >=", new Double(value), "high");
             return (Criteria) this;
         }
 
-        public Criteria andHighLessThan(BigDecimal value) {
-            addCriterion("HIGH <", value, "high");
+        public Criteria andHighLessThan(double value) {
+            addCriterion("HIGH <", new Double(value), "high");
             return (Criteria) this;
         }
 
-        public Criteria andHighLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("HIGH <=", value, "high");
+        public Criteria andHighLessThanOrEqualTo(double value) {
+            addCriterion("HIGH <=", new Double(value), "high");
             return (Criteria) this;
         }
 
-        public Criteria andHighIn(List<BigDecimal> values) {
+        public Criteria andHighIn(List<Double> values) {
             addCriterion("HIGH in", values, "high");
             return (Criteria) this;
         }
 
-        public Criteria andHighNotIn(List<BigDecimal> values) {
+        public Criteria andHighNotIn(List<Double> values) {
             addCriterion("HIGH not in", values, "high");
             return (Criteria) this;
         }
 
-        public Criteria andHighBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("HIGH between", value1, value2, "high");
+        public Criteria andHighBetween(double value1, double value2) {
+            addCriterion("HIGH between", new Double(value1), new Double(value2), "high");
             return (Criteria) this;
         }
 
-        public Criteria andHighNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("HIGH not between", value1, value2, "high");
+        public Criteria andHighNotBetween(double value1, double value2) {
+            addCriterion("HIGH not between", new Double(value1), new Double(value2), "high");
             return (Criteria) this;
         }
 
@@ -383,53 +382,53 @@ public class DataCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andLowEqualTo(BigDecimal value) {
-            addCriterion("LOW =", value, "low");
+        public Criteria andLowEqualTo(double value) {
+            addCriterion("LOW =", new Double(value), "low");
             return (Criteria) this;
         }
 
-        public Criteria andLowNotEqualTo(BigDecimal value) {
-            addCriterion("LOW <>", value, "low");
+        public Criteria andLowNotEqualTo(double value) {
+            addCriterion("LOW <>", new Double(value), "low");
             return (Criteria) this;
         }
 
-        public Criteria andLowGreaterThan(BigDecimal value) {
-            addCriterion("LOW >", value, "low");
+        public Criteria andLowGreaterThan(double value) {
+            addCriterion("LOW >", new Double(value), "low");
             return (Criteria) this;
         }
 
-        public Criteria andLowGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("LOW >=", value, "low");
+        public Criteria andLowGreaterThanOrEqualTo(double value) {
+            addCriterion("LOW >=", new Double(value), "low");
             return (Criteria) this;
         }
 
-        public Criteria andLowLessThan(BigDecimal value) {
-            addCriterion("LOW <", value, "low");
+        public Criteria andLowLessThan(double value) {
+            addCriterion("LOW <", new Double(value), "low");
             return (Criteria) this;
         }
 
-        public Criteria andLowLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("LOW <=", value, "low");
+        public Criteria andLowLessThanOrEqualTo(double value) {
+            addCriterion("LOW <=", new Double(value), "low");
             return (Criteria) this;
         }
 
-        public Criteria andLowIn(List<BigDecimal> values) {
+        public Criteria andLowIn(List<Double> values) {
             addCriterion("LOW in", values, "low");
             return (Criteria) this;
         }
 
-        public Criteria andLowNotIn(List<BigDecimal> values) {
+        public Criteria andLowNotIn(List<Double> values) {
             addCriterion("LOW not in", values, "low");
             return (Criteria) this;
         }
 
-        public Criteria andLowBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("LOW between", value1, value2, "low");
+        public Criteria andLowBetween(double value1, double value2) {
+            addCriterion("LOW between", new Double(value1), new Double(value2), "low");
             return (Criteria) this;
         }
 
-        public Criteria andLowNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("LOW not between", value1, value2, "low");
+        public Criteria andLowNotBetween(double value1, double value2) {
+            addCriterion("LOW not between", new Double(value1), new Double(value2), "low");
             return (Criteria) this;
         }
 
@@ -443,53 +442,53 @@ public class DataCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCloseEqualTo(BigDecimal value) {
-            addCriterion("CLOSE =", value, "close");
+        public Criteria andCloseEqualTo(double value) {
+            addCriterion("CLOSE =", new Double(value), "close");
             return (Criteria) this;
         }
 
-        public Criteria andCloseNotEqualTo(BigDecimal value) {
-            addCriterion("CLOSE <>", value, "close");
+        public Criteria andCloseNotEqualTo(double value) {
+            addCriterion("CLOSE <>", new Double(value), "close");
             return (Criteria) this;
         }
 
-        public Criteria andCloseGreaterThan(BigDecimal value) {
-            addCriterion("CLOSE >", value, "close");
+        public Criteria andCloseGreaterThan(double value) {
+            addCriterion("CLOSE >", new Double(value), "close");
             return (Criteria) this;
         }
 
-        public Criteria andCloseGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("CLOSE >=", value, "close");
+        public Criteria andCloseGreaterThanOrEqualTo(double value) {
+            addCriterion("CLOSE >=", new Double(value), "close");
             return (Criteria) this;
         }
 
-        public Criteria andCloseLessThan(BigDecimal value) {
-            addCriterion("CLOSE <", value, "close");
+        public Criteria andCloseLessThan(double value) {
+            addCriterion("CLOSE <", new Double(value), "close");
             return (Criteria) this;
         }
 
-        public Criteria andCloseLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("CLOSE <=", value, "close");
+        public Criteria andCloseLessThanOrEqualTo(double value) {
+            addCriterion("CLOSE <=", new Double(value), "close");
             return (Criteria) this;
         }
 
-        public Criteria andCloseIn(List<BigDecimal> values) {
+        public Criteria andCloseIn(List<Double> values) {
             addCriterion("CLOSE in", values, "close");
             return (Criteria) this;
         }
 
-        public Criteria andCloseNotIn(List<BigDecimal> values) {
+        public Criteria andCloseNotIn(List<Double> values) {
             addCriterion("CLOSE not in", values, "close");
             return (Criteria) this;
         }
 
-        public Criteria andCloseBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("CLOSE between", value1, value2, "close");
+        public Criteria andCloseBetween(double value1, double value2) {
+            addCriterion("CLOSE between", new Double(value1), new Double(value2), "close");
             return (Criteria) this;
         }
 
-        public Criteria andCloseNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("CLOSE not between", value1, value2, "close");
+        public Criteria andCloseNotBetween(double value1, double value2) {
+            addCriterion("CLOSE not between", new Double(value1), new Double(value2), "close");
             return (Criteria) this;
         }
 
@@ -503,53 +502,53 @@ public class DataCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andMoneyEqualTo(BigDecimal value) {
-            addCriterion("MONEY =", value, "money");
+        public Criteria andMoneyEqualTo(double value) {
+            addCriterion("MONEY =", new Double(value), "money");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyNotEqualTo(BigDecimal value) {
-            addCriterion("MONEY <>", value, "money");
+        public Criteria andMoneyNotEqualTo(double value) {
+            addCriterion("MONEY <>", new Double(value), "money");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyGreaterThan(BigDecimal value) {
-            addCriterion("MONEY >", value, "money");
+        public Criteria andMoneyGreaterThan(double value) {
+            addCriterion("MONEY >", new Double(value), "money");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("MONEY >=", value, "money");
+        public Criteria andMoneyGreaterThanOrEqualTo(double value) {
+            addCriterion("MONEY >=", new Double(value), "money");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyLessThan(BigDecimal value) {
-            addCriterion("MONEY <", value, "money");
+        public Criteria andMoneyLessThan(double value) {
+            addCriterion("MONEY <", new Double(value), "money");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("MONEY <=", value, "money");
+        public Criteria andMoneyLessThanOrEqualTo(double value) {
+            addCriterion("MONEY <=", new Double(value), "money");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyIn(List<BigDecimal> values) {
+        public Criteria andMoneyIn(List<Double> values) {
             addCriterion("MONEY in", values, "money");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyNotIn(List<BigDecimal> values) {
+        public Criteria andMoneyNotIn(List<Double> values) {
             addCriterion("MONEY not in", values, "money");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("MONEY between", value1, value2, "money");
+        public Criteria andMoneyBetween(double value1, double value2) {
+            addCriterion("MONEY between", new Double(value1), new Double(value2), "money");
             return (Criteria) this;
         }
 
-        public Criteria andMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("MONEY not between", value1, value2, "money");
+        public Criteria andMoneyNotBetween(double value1, double value2) {
+            addCriterion("MONEY not between", new Double(value1), new Double(value2), "money");
             return (Criteria) this;
         }
 

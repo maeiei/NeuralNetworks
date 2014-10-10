@@ -6,17 +6,17 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface DataMapper {
-    int countByExample(DataCriteria example);
+    int countByCriteria(DataCriteria criteria);
 
-    int deleteByExample(DataCriteria example);
+    int deleteByCriteria(DataCriteria criteria);
 
     int insert(Data record);
 
     int insertSelective(Data record);
 
-    List<Data> selectByExample(DataCriteria example);
+    List<Data> selectByCriteria(DataCriteria criteria);
 
-    int updateByExampleSelective(@Param("record") Data record, @Param("example") DataCriteria example);
+    int updateByCriteriaSelective(@Param("record") Data record, @Param("criteria") DataCriteria criteria);
 
-    int updateByExample(@Param("record") Data record, @Param("example") DataCriteria example);
+    int updateByCriteria(@Param("record") Data record, @Param("criteria") DataCriteria criteria);
 }
