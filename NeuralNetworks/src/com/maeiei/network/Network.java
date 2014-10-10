@@ -1,4 +1,7 @@
-package com.maeiei;
+package com.maeiei.network;
+
+import com.maeiei.level.Level;
+import com.maeiei.model.Matrix;
 
 public interface Network {
 

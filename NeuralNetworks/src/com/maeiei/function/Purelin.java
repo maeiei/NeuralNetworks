@@ -1,6 +1,6 @@
 package com.maeiei.function;
 
-import com.maeiei.Matrix;
+import com.maeiei.model.Matrix;
 
 public class Purelin implements Function {
 

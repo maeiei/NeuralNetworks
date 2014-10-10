@@ -1,4 +1,6 @@
-package com.maeiei;
+package com.maeiei.operation;
+
+import com.maeiei.model.Matrix;
 
 public class Operation {
 

@@ -1,4 +1,6 @@
-package com.maeiei;
+package com.maeiei.level;
+
+import com.maeiei.model.Matrix;
 
 public class NullLevel extends Level {
 

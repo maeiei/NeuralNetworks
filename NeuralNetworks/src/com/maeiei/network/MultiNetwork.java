@@ -1,4 +1,8 @@
-package com.maeiei;
+package com.maeiei.network;
+
+import com.maeiei.level.Level;
+import com.maeiei.level.NullLevel;
+import com.maeiei.model.Matrix;
 
 public class MultiNetwork implements Network {
 

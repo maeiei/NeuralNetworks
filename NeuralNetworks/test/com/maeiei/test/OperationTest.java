@@ -2,11 +2,9 @@ package com.maeiei.test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.*;
-
 import org.junit.Test;
-
-import com.maeiei.Matrix;
-import com.maeiei.Operation;
+import com.maeiei.model.Matrix;
+import com.maeiei.operation.Operation;
 
 public class OperationTest {
 	

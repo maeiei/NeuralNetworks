@@ -1,4 +1,9 @@
-package com.maeiei;
+package com.maeiei.rule;
+
+import com.maeiei.level.Level;
+import com.maeiei.model.Matrix;
+import com.maeiei.network.Network;
+import com.maeiei.operation.Operation;
 
 public class BackPropagationRule implements Rule {
 

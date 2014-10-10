@@ -2,10 +2,8 @@ package com.maeiei.test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-
 import org.junit.Test;
-
-import com.maeiei.Matrix;
+import com.maeiei.model.Matrix;
 
 public class MatrixTest {
 

@@ -1,6 +1,9 @@
-package com.maeiei;
+package com.maeiei.level;
 
 import com.maeiei.function.Function;
+import com.maeiei.model.Matrix;
+import com.maeiei.operation.Operation;
+import com.maeiei.util.Nullable;
 
 public class Level implements Nullable {
 

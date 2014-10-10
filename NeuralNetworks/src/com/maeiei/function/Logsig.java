@@ -1,7 +1,7 @@
 package com.maeiei.function;
 
-import com.maeiei.Matrix;
-import com.maeiei.Operation;
+import com.maeiei.model.Matrix;
+import com.maeiei.operation.Operation;
 
 public class Logsig implements Function {
 

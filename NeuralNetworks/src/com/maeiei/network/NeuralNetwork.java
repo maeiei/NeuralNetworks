@@ -1,4 +1,7 @@
-package com.maeiei;
+package com.maeiei.network;
+
+import com.maeiei.model.Matrix;
+import com.maeiei.rule.Rule;
 
 public class NeuralNetwork {
 

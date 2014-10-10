@@ -5,9 +5,9 @@ import static org.hamcrest.core.Is.*;
 import static org.hamcrest.core.IsEqual.*;
 import java.text.DecimalFormat;
 import org.junit.Test;
-import com.maeiei.Matrix;
 import com.maeiei.function.Function;
 import com.maeiei.function.Logsig;
+import com.maeiei.model.Matrix;
 
 public class LogsigTest {
 	@Test

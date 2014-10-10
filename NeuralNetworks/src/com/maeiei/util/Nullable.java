@@ -1,4 +1,4 @@
-package com.maeiei;
+package com.maeiei.util;
 
 public interface Nullable {
 

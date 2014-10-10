@@ -1,4 +1,4 @@
-package com.maeiei;
+package com.maeiei.model;
 
 public class Matrix {
 

@@ -2,14 +2,14 @@ package com.maeiei.test;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import com.maeiei.BackPropagationRule;
-import com.maeiei.Level;
-import com.maeiei.Matrix;
-import com.maeiei.MultiNetwork;
-import com.maeiei.Network;
-import com.maeiei.NeuralNetwork;
 import com.maeiei.function.Logsig;
 import com.maeiei.function.Purelin;
+import com.maeiei.level.Level;
+import com.maeiei.model.Matrix;
+import com.maeiei.network.MultiNetwork;
+import com.maeiei.network.Network;
+import com.maeiei.network.NeuralNetwork;
+import com.maeiei.rule.BackPropagationRule;
 
 public class NeuralNetworkTest {
 

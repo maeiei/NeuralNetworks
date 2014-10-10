@@ -2,11 +2,11 @@ package com.maeiei.test;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import com.maeiei.Level;
-import com.maeiei.Matrix;
-import com.maeiei.Operation;
 import com.maeiei.function.Logsig;
 import com.maeiei.function.Purelin;
+import com.maeiei.level.Level;
+import com.maeiei.model.Matrix;
+import com.maeiei.operation.Operation;
 
 public class LevelTest {
 
