@@ -12,7 +12,7 @@ public class DataTransfer {
 	}
 	public static Matrix transferResult(Data data) {
 		Matrix matrix = Matrix.unit(1, 1);
-		matrix.set(0, 0, data.getOpen());
+		matrix.set(0, 0, data.getClose());
 		return matrix;
 	}
 }

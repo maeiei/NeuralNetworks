@@ -47,21 +47,31 @@ public class NeuralNetworkTest {
 		List<Data> data = dataMapper.selectByCriteria(initCondition());
 		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network), data, data);
 		int num = 0;
-		while (num < 10) {
+		while (num < 10000) {
 			for (int i = 0; i < data.size(); i++) {
-				network.setInput(DataTransfer.transferInput(data.get(i)));
+				Matrix matrix = Matrix.unit(1, 1);
+				matrix.set(0, 0, i);
+				network.setInput(matrix);
 				network.setInitResult(DataTransfer.transferResult(data.get(i)));
 				neuralNetwork.setNetwork(network);
 				neuralNetwork.run();
 			}
 			num++;
 		}
+		Level head = network.getHead();
+		while(head.isNotNull()){
+			System.out.println("权值：" + head.getWeight());
+			System.out.println("偏置值：" + head.getBias());
+			head = head.getNextLevel();
+		}
 		for (int i = 0; i < data.size(); i++) {
-			network.setInput(DataTransfer.transferInput(data.get(i)));
+			Matrix matrix = Matrix.unit(1, 1);
+			matrix.set(0, 0, i);
+			network.setInput(matrix);
 			network.setInitResult(DataTransfer.transferResult(data.get(i)));
 			neuralNetwork.setNetwork(network);
 			neuralNetwork.forword();
-			System.out.println(neuralNetwork.getOutput());
+			System.out.println("结果：" + neuralNetwork.getOutput());
 		}
 	}
 
@@ -179,8 +189,8 @@ public class NeuralNetworkTest {
 	}
 
 	private Level initFirstLevel() {
-		double[][] weightData = { { 0.027 }, { 0.0041 }, { 0.0001 }, { 0.0002 }, { 0.0003 }, { 0.0004 }, { 0.0005 } };
-		double[][] biasData = { { -0.048 }, { -0.13 }, { 0.00001 }, { 0.00002 }, { 0.00003 }, { 0.00004 }, { 0.00005 } };
+		double[][] weightData = { { -0.27 }, { -0.41 }};
+		double[][] biasData = { { -0.48 }, { -0.13 } };
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
 		Logsig logsig = new Logsig();
@@ -189,7 +199,7 @@ public class NeuralNetworkTest {
 	}
 
 	private Level initSecondLevel() {
-		double[][] weightSecondData = { { 0.09, -0.17, 0.01, 0.02, 0.03, 0.04, 0.05 } };
+		double[][] weightSecondData = { { 0.09, -0.17 } };
 		double[][] biasSecondData = { { 0.48 } };
 		Matrix weightSecond = new Matrix(weightSecondData);
 		Matrix biasSecond = new Matrix(biasSecondData);

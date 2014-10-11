@@ -7,11 +7,11 @@ import com.maeiei.operation.Operation;
 
 public class BackPropagationRule implements Rule {
 
-	private static final double[][] CONSTANTDATA = { { -2 } };
+	private static final double[][] CONSTANTDATA = { { -0.2} };
 
 	public static final Matrix CONSTANT = new Matrix(CONSTANTDATA);
 
-	public static final double ALPHA = 0.0002d;
+	public static final double ALPHA = 0.002d;
 
 	private Level last;
 

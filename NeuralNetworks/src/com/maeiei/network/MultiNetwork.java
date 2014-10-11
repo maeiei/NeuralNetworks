@@ -87,8 +87,8 @@ public class MultiNetwork implements Network {
 		StringBuilder sb = new StringBuilder(128);
 		Level next = head;
 		while (next.hasNext()) {
-			next = next.getNextLevel();
 			sb.append("Level: ").append(next.toString()).append("\n");
+			next = next.getNextLevel();
 		}
 		sb.append("Input: ").append(input.toString()).append("\n");
 		sb.append("InitResult: ").append(initResult.toString()).append("\n");
