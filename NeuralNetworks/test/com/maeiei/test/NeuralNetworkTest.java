@@ -1,17 +1,37 @@
 package com.maeiei.test;
 
+import java.util.List;
+import javax.annotation.Resource;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import com.maeiei.dao.DataMapper;
+import com.maeiei.dao.ResultDataMapper;
 import com.maeiei.function.Logsig;
 import com.maeiei.function.Purelin;
 import com.maeiei.level.Level;
+import com.maeiei.model.Data;
+import com.maeiei.model.DataCriteria;
+import com.maeiei.model.DataCriteria.Criteria;
 import com.maeiei.model.Matrix;
 import com.maeiei.network.MultiNetwork;
 import com.maeiei.network.Network;
 import com.maeiei.network.NeuralNetwork;
 import com.maeiei.rule.BackPropagationRule;
+import com.maeiei.util.DataTransfer;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:config/spring.xml" })
 public class NeuralNetworkTest {
+
+	@Resource(name = "dataMapper")
+	private DataMapper dataMapper;
+
+	@Resource(name = "resultDataMapper")
+	private ResultDataMapper resultDataMapper;
 
 	@Test
 	@Ignore
@@ -21,11 +41,44 @@ public class NeuralNetworkTest {
 		System.out.println(neuralNetwork.getOutput());
 	}
 
+	@Test	
+	public void testBackPropagationRuleData() {
+		Network network = initNetwork();
+		List<Data> data = dataMapper.selectByCriteria(initCondition());
+		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network), data, data);
+		int num = 0;
+		while (num < 10) {
+			for (int i = 0; i < data.size(); i++) {
+				network.setInput(DataTransfer.transferInput(data.get(i)));
+				network.setInitResult(DataTransfer.transferResult(data.get(i)));
+				neuralNetwork.setNetwork(network);
+				neuralNetwork.run();
+			}
+			num++;
+		}
+		for (int i = 0; i < data.size(); i++) {
+			network.setInput(DataTransfer.transferInput(data.get(i)));
+			network.setInitResult(DataTransfer.transferResult(data.get(i)));
+			neuralNetwork.setNetwork(network);
+			neuralNetwork.forword();
+			System.out.println(neuralNetwork.getOutput());
+		}
+	}
+
+	private DataCriteria initCondition() {
+		DataCriteria criterias = new DataCriteria();
+		Criteria criteria = criterias.createCriteria();
+		criteria.andIdLessThan(5632);
+		return criterias;
+	}
+
+	@Test
+	@Ignore
 	public void testBackPropagationRuleCirculation() {
 		Network network = initNetwork();
 		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
 		int num = 0;
-		while (num < 10000) {
+		while (num < 100000) {
 			Matrix input = Matrix.unit(1, 0.0d);
 			Matrix initResult = Matrix.unit(1, 1.0d);
 			network.setInput(input);
@@ -49,7 +102,7 @@ public class NeuralNetworkTest {
 			// System.out.println(neuralNetwork.getOutput());
 			num++;
 		}
-		network.setInput(Matrix.unit(1, 2.0d));
+		network.setInput(Matrix.unit(1, 1.0d));
 		// network.setInitResult(Matrix.unit(1, 2.0d));
 		neuralNetwork.setNetwork(network);
 		neuralNetwork.forword();
@@ -57,6 +110,7 @@ public class NeuralNetworkTest {
 	}
 
 	@Test
+	@Ignore
 	public void testBackPropagationRuleCirculation1() {
 		Network network = initNetwork();
 		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(network));
@@ -125,8 +179,8 @@ public class NeuralNetworkTest {
 	}
 
 	private Level initFirstLevel() {
-		double[][] weightData = { { -0.27 }, { -0.41 }, { 0.1 }, { 0.2 }, { 0.3 }, { 0.4 }, { 0.5 } };
-		double[][] biasData = { { -0.48 }, { -0.13 }, { 0.1 }, { 0.2 }, { 0.3 }, { 0.4 }, { 0.5 } };
+		double[][] weightData = { { 0.027 }, { 0.0041 }, { 0.0001 }, { 0.0002 }, { 0.0003 }, { 0.0004 }, { 0.0005 } };
+		double[][] biasData = { { -0.048 }, { -0.13 }, { 0.00001 }, { 0.00002 }, { 0.00003 }, { 0.00004 }, { 0.00005 } };
 		Matrix weight = new Matrix(weightData);
 		Matrix bias = new Matrix(biasData);
 		Logsig logsig = new Logsig();
@@ -135,7 +189,7 @@ public class NeuralNetworkTest {
 	}
 
 	private Level initSecondLevel() {
-		double[][] weightSecondData = { { 0.09, -0.17, 0.1, 0.2, 0.3, 0.4, 0.5 } };
+		double[][] weightSecondData = { { 0.09, -0.17, 0.01, 0.02, 0.03, 0.04, 0.05 } };
 		double[][] biasSecondData = { { 0.48 } };
 		Matrix weightSecond = new Matrix(weightSecondData);
 		Matrix biasSecond = new Matrix(biasSecondData);
@@ -164,5 +218,15 @@ public class NeuralNetworkTest {
 		network.add(last);
 		NeuralNetwork neuralNetwork = new NeuralNetwork(network, new BackPropagationRule(last));
 		return neuralNetwork;
+	}
+
+	@Autowired
+	public void setDataMapper(DataMapper dataMapper) {
+		this.dataMapper = dataMapper;
+	}
+
+	@Autowired
+	public void setResultDataMapper(ResultDataMapper resultDataMapper) {
+		this.resultDataMapper = resultDataMapper;
 	}
 }

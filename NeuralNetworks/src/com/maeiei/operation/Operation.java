@@ -15,6 +15,12 @@ public class Operation {
 		return sum;
 	}
 
+	/**
+	 * ¼õ·¨
+	 * @param addend
+	 * @param addenda
+	 * @return
+	 */
 	public static Matrix subtract(Matrix addend, Matrix addenda) {
 		if (addend.getRow() != addenda.getRow()
 				|| addend.getColumn() != addenda.getColumn())

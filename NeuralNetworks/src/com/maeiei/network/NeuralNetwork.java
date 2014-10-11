@@ -2,6 +2,7 @@ package com.maeiei.network;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.maeiei.model.Data;
 import com.maeiei.model.Matrix;
 import com.maeiei.rule.Rule;
 
@@ -13,15 +14,15 @@ public class NeuralNetwork {
 
 	private Matrix output;
 
-	private List<Matrix> inputs;
+	private List<Data> inputs;
 
-	private List<Matrix> initResults;
+	private List<Data> initResults;
 
 	public NeuralNetwork(Network network, Rule rule) {
-		this(network, rule, new ArrayList<Matrix>(), new ArrayList<Matrix>());
+		this(network, rule, new ArrayList<Data>(), new ArrayList<Data>());
 	}
 
-	public NeuralNetwork(Network network, Rule rule, List<Matrix> inputs, List<Matrix> initResults) {
+	public NeuralNetwork(Network network, Rule rule, List<Data> inputs, List<Data> initResults) {
 		this.network = network;
 		this.rule = rule;
 		this.inputs = inputs;
@@ -50,19 +51,27 @@ public class NeuralNetwork {
 		this.network = network;
 	}
 
-	public List<Matrix> getInputs() {
+	public List<Data> getInputs() {
 		return inputs;
 	}
 
-	public void setInputs(List<Matrix> inputs) {
+	public void setInputs(List<Data> inputs) {
 		this.inputs = inputs;
 	}
 
-	public List<Matrix> getInitResults() {
+	public List<Data> getInitResults() {
 		return initResults;
 	}
 
-	public void setInitResults(List<Matrix> initResults) {
+	public void setInitResults(List<Data> initResults) {
 		this.initResults = initResults;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder(128);
+		sb.append("network: ").append(network.toString()).append("\n");
+		sb.append("output: ").append(output.toString()).append("\n");
+		return sb.toString();
 	}
 }

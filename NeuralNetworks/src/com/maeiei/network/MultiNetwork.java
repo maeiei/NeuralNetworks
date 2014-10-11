@@ -34,7 +34,7 @@ public class MultiNetwork implements Network {
 			}
 			node.setNextLevel(level);
 			level.setPreviousLevel(node);
-			level.setInput(node.getOutput());
+			//level.setInput(node.getOutput());
 			level.setInitResult(initResult);
 		}
 	}
@@ -61,10 +61,12 @@ public class MultiNetwork implements Network {
 	}
 
 	public void setInput(Matrix input) {
+		this.input = input;
 		head.setInput(input);
 	}
 
 	public void setInitResult(Matrix initResult) {
+		this.initResult = initResult;
 		getLast().setInitResult(initResult);
 	}
 
@@ -78,5 +80,18 @@ public class MultiNetwork implements Network {
 			next = next.getNextLevel();
 		}
 		return next;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder(128);
+		Level next = head;
+		while (next.hasNext()) {
+			next = next.getNextLevel();
+			sb.append("Level: ").append(next.toString()).append("\n");
+		}
+		sb.append("Input: ").append(input.toString()).append("\n");
+		sb.append("InitResult: ").append(initResult.toString()).append("\n");
+		return sb.toString();
 	}
 }

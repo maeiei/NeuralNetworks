@@ -172,4 +172,15 @@ public class Level implements Nullable {
 	public boolean isNotNull() {
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder(128);
+		sb.append("input: ").append(input.toString()).append("\n");
+		sb.append("initResult: ").append(initResult.toString()).append("\n");
+		sb.append("weight: ").append(weight.toString()).append("\n");
+		sb.append("bias: ").append(bias.toString()).append("\n");
+		sb.append("output: ").append(output.toString()).append("\n");
+		return sb.toString();
+	}
 }

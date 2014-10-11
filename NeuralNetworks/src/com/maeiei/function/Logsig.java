@@ -19,14 +19,14 @@ public class Logsig implements Function {
 	 * @return a = 1 / (1 + e^-n)
 	 */
 	private double calculateResult(double n) {
-
 		return 1 / (1 + Math.pow(Math.E, -n));
 	}
 
 	@Override
 	public Matrix derivate(Matrix matrix) {
 		Matrix one = Matrix.allOne(matrix.getRow(), matrix.getColumn());
-		return Operation.multiply(Operation.subtract(one, function(matrix)),
-				function(matrix).transpose());
+		Matrix funResult = function(matrix);
+		Matrix result = Operation.multiply(Operation.subtract(one, funResult), funResult.transpose());
+		return result;
 	}
 }

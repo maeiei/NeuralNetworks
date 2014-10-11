@@ -11,7 +11,8 @@ public class BackPropagationRule implements Rule {
 
 	public static final Matrix CONSTANT = new Matrix(CONSTANTDATA);
 
-	public static final double ALPHA = 0.00002d;
+	public static final double ALPHA = 0.0002d;
+
 	private Level last;
 
 	private Matrix constant;
