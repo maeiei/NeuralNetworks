@@ -10,7 +10,7 @@
     <result column="CLOSE" property="close" jdbcType="DECIMAL" />
     <result column="MONEY" property="money" jdbcType="DECIMAL" />
     <result column="STOCK_DATE" property="stockDate" jdbcType="DATE" />
-  </resultMap> 
+  </resultMap1> 
   <sql id="Criteria_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
